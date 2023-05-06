@@ -1,12 +1,13 @@
 
-import * as THREE from 'three'
+import * as THREE from 'three';
+
 
 window.addEventListener('DOMContentLoaded', init);
 
 function init() {
   // サイズを指定
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+  const width = 960;
+  const height = 540;
   let rot = 0;
 
   // レンダラーを作成
@@ -19,7 +20,7 @@ function init() {
   const scene = new THREE.Scene();
 
   // カメラを作成
-  const camera = new THREE.PerspectiveCamera(40, width / height);
+  const camera = new THREE.PerspectiveCamera(45, width / height);
 
   // 平行光源を作成
   const directionalLight = new THREE.DirectionalLight(0xffffff);
@@ -27,10 +28,17 @@ function init() {
   scene.add(directionalLight);
 
   // マテリアルを作成
-  const geometry = new THREE.TorusGeometry(200, 50, 50);
-  const material = new THREE.MeshNormalMaterial();
-  const box = new THREE.Mesh(geometry, material);
-  scene.add(box);
+  const material = new THREE.MeshStandardMaterial({
+    map: new THREE.TextureLoader().load('public/earthmap1k.jpg'),
+    side: THREE.DoubleSide,
+  });
+
+  // 球体の形状を作成します
+  const geometry = new THREE.SphereGeometry(300, 30, 30);
+  // 形状とマテリアルからメッシュを作成します
+  const earthMesh = new THREE.Mesh(geometry, material);
+  // シーンにメッシュを追加します
+  scene.add(earthMesh);
 
   // 星屑を作成します (カメラの動きをわかりやすくするため)
   createStarField();
@@ -52,7 +60,6 @@ function init() {
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
 
     // マテリアルを作成
-    
     const material = new THREE.PointsMaterial({
       size: 10,
       color: 0xffffff,
@@ -71,9 +78,8 @@ function init() {
     // ラジアンに変換する
     const radian = (rot * Math.PI) / 180;
     // 角度に応じてカメラの位置を設定
-    camera.position.x = 900 * Math.cos(radian);
-    camera.position.z = 1000 * Math.sin(radian);
-    camera.position.y = 1000 * Math.sin(radian);
+    camera.position.x = 1000 * Math.sin(radian);
+    camera.position.z = 1000 * Math.cos(radian);
     // 原点方向を見つめる
     camera.lookAt(new THREE.Vector3(0, 0, 0));
 
@@ -82,23 +88,4 @@ function init() {
 
     requestAnimationFrame(tick);
   }
-
-        // 初期化のために実行
-        onResize();
-        // リサイズイベント発生時に実行
-        window.addEventListener('resize', onResize);
-
-        function onResize() {
-          // サイズを取得
-          const width = window.innerWidth;
-          const height = window.innerHeight;
-
-          // レンダラーのサイズを調整する
-          renderer.setPixelRatio(window.devicePixelRatio);
-          renderer.setSize(width, height);
-
-          // カメラのアスペクト比を正す
-          camera.aspect = width / height;
-          camera.updateProjectionMatrix();
-        }
 }

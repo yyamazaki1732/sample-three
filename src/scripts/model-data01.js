@@ -49,7 +49,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
       // GLTF形式のモデルデータを読み込む
       const loader = new GLTFLoader();
       // GLTFファイルのパスを指定
-      const gltf = await loader.loadAsync('../images/ToyCar.glb');
+      const gltf = await loader.loadAsync('public/ToyCar.glb');
       // 読み込み後に3D空間に追加
       const model = gltf.scene;
       scene.add(model);

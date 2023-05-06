@@ -1,16 +1,48 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Welcome to Astro.">
-	<main>
-		<ul>
-			<li><a href="./rotate01">rotate01</a></li>
-			<li><a href="./rotate02">rotate02</a></li>
-			<li><a href="./rotate03">rotate03</a></li>
-		</ul>
-		<ul>
-			<li><a href="./model-data01">model-data01</a></li>
-		</ul>
-	</main>
+  <main>
+    <h1>three.js practice</h1>
+    <div class="wrapper">
+      <ul>
+        <li><h2>01. カメラ</h2></li>
+        <li><a href="./rotate01">rotate01</a></li>
+        <li><a href="./rotate02">rotate02</a></li>
+        <li><a href="./rotate03">rotate03</a></li>
+        <li><a href="./rotate04">rotate04</a></li>
+        <li><a href="./perspective">perspective</a></li>
+      </ul>
+      <ul>
+        <li><h2>02. モデルの読み込み</h2></li>
+        <li><a href="./model-data01">model-data01</a></li>
+      </ul>
+      <ul>
+        <li><h2>03. ライト</h2></li>
+        <li><a href="./light01">light01</a></li>
+        <li><a href="./light02">light02</a></li>
+      </ul>
+      <ul>
+        <li><h2>04. ShaderMaterial</h2></li>
+        <li><a href="./shader01">shader01</a></li>
+        <li><a href="./shader02">shader02</a></li>
+        <li><a href="./shader03">shader03</a></li>
+        <li><a href="./shader-sample">shader-sample</a></li>
+      </ul>
+    </div>
+  </main>
 </Layout>
+
+<style>
+  main {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .wrapper {
+    display: grid;
+    grid-template: max-content/repeat(2, max-content);
+    justify-content: center;
+    column-gap: 48px;
+  }
+</style>
