@@ -1,8 +1,6 @@
+import * as THREE from "three";
 
-import * as THREE from 'three';
-
-
-window.addEventListener('DOMContentLoaded', init);
+window.addEventListener("DOMContentLoaded", init);
 
 function init() {
   // サイズを指定
@@ -12,7 +10,7 @@ function init() {
 
   // レンダラーを作成
   const renderer = new THREE.WebGLRenderer({
-    canvas: document.querySelector('#myCanvas'),
+    canvas: document.querySelector("#myCanvas"),
   });
   renderer.setSize(width, height);
 
@@ -29,7 +27,7 @@ function init() {
 
   // マテリアルを作成
   const material = new THREE.MeshStandardMaterial({
-    map: new THREE.TextureLoader().load('public/earthmap1k.jpg'),
+    map: new THREE.TextureLoader().load("../public/earthmap1k.jpg"),
     side: THREE.DoubleSide,
   });
 
@@ -57,7 +55,10 @@ function init() {
 
     // 形状データを作成
     const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+    geometry.setAttribute(
+      "position",
+      new THREE.Float32BufferAttribute(vertices, 3)
+    );
 
     // マテリアルを作成
     const material = new THREE.PointsMaterial({

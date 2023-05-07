@@ -49,7 +49,7 @@ class ImagePlane {
 
   update(offset) {
     this.setParams();
-
+    // 今まで時間経過でアニメーションしていたのをスクロール量に連動する形に変更
     this.mesh.material.uniforms.uTime.value = offset;
   }
 }
@@ -91,7 +91,7 @@ const updateScroll = () => {
   targetScrollY = document.documentElement.scrollTop;
   // リープ関数でスクロール位置をなめらかに追従
   currentScrollY = lerp(currentScrollY, targetScrollY, 0.1);
-
+  // スクロールするとなめらかに増え、やめるとなめらかに減る値
   scrollOffset = targetScrollY - currentScrollY;
 };
 

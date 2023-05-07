@@ -22,7 +22,7 @@ function init() {
   // camera.position.z = 0;
   camera.lookAt(new THREE.Vector3(0, 0, 0));
 
-  const texture = new THREE.TextureLoader().load("public/whale.jpg");
+  const texture = new THREE.TextureLoader().load("../public/whale.jpg");
   let targetPercent = 1;
 
   // uniform変数を定義

@@ -1,0 +1,81 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import "../../styles/shader-try.css";
+---
+
+<Layout title="Welcome to Astro.">
+    <div class="box"></div>
+    <div class="wrapper">
+      <div class="scrollable">
+        <div class="container">
+          <ul class="image-list">
+            <li class="image-item">
+              <a href="" class="image-wrapper">
+                <img src="https://source.unsplash.com/whOkVvf0_hU/" alt=""  width="1080" height="720"/>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="webgl-canvas">
+      <canvas id="webgl-canvas" class="webgl-canvas__body"></canvas>
+    </div>
+    <!-- シェーダーをscriptタグ内に書いてJSで読み込む -->
+    <script id="v-shader" type="x-shader/x-vertex">
+      varying vec2 vUv;// fragmentShaderに渡すためのvarying変数
+      uniform float uTime;
+
+      float PI = 3.1415926535897932384626433832795;
+
+      void main(){
+          // 処理する頂点ごとのuv(テクスチャ)座標をそのままfragmentShaderに横流しする
+          vUv = uv;
+          vec3 pos = position;
+
+          // 横方向
+          float amp = 0.0001; // 振幅（の役割） 大きくすると波が大きくなる
+          float freq = 0.1 * uTime; // 振動数（の役割） 大きくすると波が細かくなる
+
+          // 縦方向
+          float tension = -0.0007 * uTime; // 上下の張り具合
+
+          pos.x = pos.x + sin(pos.y * PI  * freq) * amp;
+          pos.y = pos.y + (cos(pos.x * PI) * tension);
+
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+      }
+    </script>
+    <script id="f-shader" type="x-shader/x-fragment">
+      varying vec2 vUv;
+      uniform sampler2D uTexture;
+      uniform float uImageAspect;
+      uniform float uPlaneAspect;
+      uniform float uTime;
+
+      void main(){
+        // 画像のアスペクトとプレーンオブジェクトのアスペクトを比較し、短い方に合わせる
+        vec2 ratio = vec2(
+          min(uPlaneAspect / uImageAspect, 1.0),
+          min((1.0 / uPlaneAspect) / (1.0 / uImageAspect), 1.0)
+        );
+
+        // 計算結果を用いてテクスチャを中央に配置
+        vec2 fixedUv = vec2(
+          (vUv.x - 0.5) * ratio.x + 0.5,
+          (vUv.y - 0.5) * ratio.y + 0.5
+        );
+
+        vec2 offset = vec2(0.0, uTime * 0.0005);
+        float r = texture2D(uTexture, fixedUv).r;
+        float g = texture2D(uTexture, fixedUv).g;
+        float b = texture2D(uTexture, fixedUv).b;
+        vec3 texture = vec3(r, g, b);
+
+        gl_FragColor = vec4(texture, 1.0);
+      }
+    </script>
+</Layout>
+
+<script src="../../scripts/shader/shader-try.js"></script> 
+<!-- <script src="../../scripts/gsap-try.js"></script>  -->

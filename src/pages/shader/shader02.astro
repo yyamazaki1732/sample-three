@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout title="Welcome to Astro.">
@@ -8,10 +8,12 @@ import Layout from '../layouts/Layout.astro';
 		<canvas id="myCanvas"></canvas>
 	</main>
 	<!-- ===============================================
-	 # vertex
+	# vertex
 	================================================ -->
 	<script id="v-shader" type="x-shader/x-vertex">
 	varying vec2 vUv;
+	// varying vec2 vUv;// 頂点シェーダーから varying 変数を受け取る
+
 		void main() {
 			// uv: ShaderMaterialで補完される vec2 型(xy)の変数。テクスチャ座標のこと。
 			vUv = uv;
@@ -23,17 +25,27 @@ import Layout from '../layouts/Layout.astro';
 		}
 	</script>
 	<!-- ===============================================
-	 # fragment
+	# fragment
 	================================================ -->
 	<script id="f-shader" type="x-shader/x-fragment">
+	uniform float uAspect;// 画面のアスペクト比
 	varying vec2 vUv;
+	uniform float uTime;// 時間
+
 	void main() {
-		// position: ShaderMaterialで補完される vec3 型(xyz)の変数。ジオメトリの頂点のこと。
-		vec4 color = vec4( vUv.y, vUv.x, 0.0, 1 );// テクスチャ座標を r g に入れる
-		// vec4 color = vec4( vUv.x, vUv.y, 0.7, 1.0 );// テクスチャ座標を r g に入れる
+		vec2 uv = vec2( vUv.x * uAspect, vUv.y );// xをアスペクト補正したテクスチャ座標
+  		vec2 center = vec2( .5 * uAspect, .5 );// xをアスペクト補正した画面の中心
+
+		float radius = 0.05 + sin( uTime * 2.0 ) * 0.025;// 時間で半径をアニメーションさせる
+		float lightness = radius / length( uv - center );// 半径を距離で割る
+
+  		// lightness = clamp( lightness, 0.0, 1.0 );
+		vec4 color = vec4( vec3( lightness ), 1.0 );
+  		color *= vec4( 0.2, 0.5, 1.0, 1.0 );
+
 		gl_FragColor = color;
 	}
 	</script>
 
 </Layout>
-<script src="../scripts/shader01.js"></script>
+<script src="../../scripts/shader/shader02.js"></script>
