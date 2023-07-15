@@ -50,7 +50,7 @@ class ImagePlane {
 
   update(offset) {
     this.setParams();
-    // 今まで時間経過でアニメーションしていたのをスクロール量に連動する形に変更
+
     this.mesh.material.uniforms.uTime.value = offset;
   }
 }
@@ -65,7 +65,7 @@ const createMesh = (img) => {
     uPlaneAspect: { value: img.clientWidth / img.clientHeight },
     uTime: { value: 0 },
   };
-  const geo = new THREE.PlaneBufferGeometry(1, 1, 100, 100); // 後から画像のサイズにscaleするので1にしておく
+  const geo = new THREE.PlaneGeometry(1, 1, 100, 100); // 後から画像のサイズにscaleするので1にしておく
   const mat = new THREE.ShaderMaterial({
     uniforms,
     vertexShader: document.getElementById("v-shader").textContent,
@@ -92,21 +92,15 @@ const updateScroll = () => {
   targetScrollY = document.documentElement.scrollTop;
   // リープ関数でスクロール位置をなめらかに追従
   currentScrollY = lerp(currentScrollY, targetScrollY, 0.1);
-  // スクロールするとなめらかに増え、やめるとなめらかに減る値
+
   scrollOffset = targetScrollY - currentScrollY;
 };
-
-// 慣性スクロール
-const scrollArea = document.querySelector(".scrollable");
-document.body.style.height = `${scrollArea.getBoundingClientRect().height}px`;
 
 const imagePlaneArray = [];
 
 // 毎フレーム呼び出す
 const loop = () => {
   updateScroll();
-
-  scrollArea.style.transform = `translate3d(0,${-currentScrollY}px,0)`;
   for (const plane of imagePlaneArray) {
     plane.update(scrollOffset);
   }
@@ -127,7 +121,6 @@ const resize = () => {
 
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(width, height);
-  // renderer.setClearColor(new THREE.Color(0xFF0000));
 
   camera.aspect = width / height;
   camera.updateProjectionMatrix();

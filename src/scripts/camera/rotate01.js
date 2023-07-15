@@ -1,7 +1,6 @@
+import * as THREE from "three";
 
-import * as THREE from 'three'
-
-window.addEventListener('DOMContentLoaded', init);
+window.addEventListener("DOMContentLoaded", init);
 
 function init() {
   // サイズを指定
@@ -11,7 +10,7 @@ function init() {
 
   // レンダラーを作成
   const renderer = new THREE.WebGLRenderer({
-    canvas: document.querySelector('#myCanvas'),
+    canvas: document.querySelector("#myCanvas"),
   });
   renderer.setSize(width, height);
 
@@ -49,10 +48,13 @@ function init() {
 
     // 形状データを作成
     const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+    geometry.setAttribute(
+      "position",
+      new THREE.Float32BufferAttribute(vertices, 3)
+    );
 
     // マテリアルを作成
-    
+
     const material = new THREE.PointsMaterial({
       size: 10,
       color: 0xffffff,
@@ -83,22 +85,22 @@ function init() {
     requestAnimationFrame(tick);
   }
 
-        // 初期化のために実行
-        onResize();
-        // リサイズイベント発生時に実行
-        window.addEventListener('resize', onResize);
+  // 初期化のために実行
+  onResize();
+  // リサイズイベント発生時に実行
+  window.addEventListener("resize", onResize);
 
-        function onResize() {
-          // サイズを取得
-          const width = window.innerWidth;
-          const height = window.innerHeight;
+  function onResize() {
+    // サイズを取得
+    const width = window.innerWidth;
+    const height = window.innerHeight;
 
-          // レンダラーのサイズを調整する
-          renderer.setPixelRatio(window.devicePixelRatio);
-          renderer.setSize(width, height);
+    // レンダラーのサイズを調整する
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(width, height);
 
-          // カメラのアスペクト比を正す
-          camera.aspect = width / height;
-          camera.updateProjectionMatrix();
-        }
+    // カメラのアスペクト比を正す
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+  }
 }
