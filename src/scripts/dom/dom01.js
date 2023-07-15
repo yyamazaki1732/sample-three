@@ -14,6 +14,11 @@ function init() {
   });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(width, height);
+
+  // dom要素取得
+  const element = document.getElementById("scroll-container_title");
+  const rect = element.getBoundingClientRect();
+
   // シーンを作成
   const scene = new THREE.Scene();
 
@@ -27,11 +32,23 @@ function init() {
   camera.position.z = dist;
 
   // ドーナツを作成
-  const geometry = new THREE.TorusKnotGeometry(100, 40, 200, 200);
+  const depth = 300;
+  const geometry = new THREE.BoxGeometry(rect.width, rect.height, depth);
   // マテリアルを作成
-  const material = new THREE.MeshPhongMaterial({ color: 0xffffff });
+  const material = new THREE.MeshLambertMaterial({ color: 0xffffff });
   // メッシュを作成
   const mesh = new THREE.Mesh(geometry, material);
+  // ウィンドウ中心からDOMRect中心へのベクトルを求めてオフセットする
+  const center = new THREE.Vector2(
+    rect.x + rect.width / 2,
+    rect.y + rect.height / 2
+  );
+  console.log(window.innerWidth);
+  console.log(rect.x + rect.width / 2);
+  const diff = new THREE.Vector2(center.x - width / 2, center.y - height / 2);
+  mesh.position.z = -depth / 2;
+  mesh.position.y = -400;
+  // mesh.position.set(diff.x, -diff.y, -depth / 2);
   // 3D空間にメッシュを追加
   scene.add(mesh);
 
@@ -40,14 +57,7 @@ function init() {
   spotLight.position.set(0, 0, dist);
   scene.add(spotLight);
 
-  // ポイント光源
-  //   const pointLight = new THREE.PointLight(0xffffff, 2, 1000);
-  //   scene.add(pointLight);
-  //   const pointLightHelper = new THREE.PointLightHelper(pointLight, 30);
-  //   scene.add(pointLightHelper);
-
   //   mousemove
-
   function mouseMoved(x, y) {
     mouse.x = x - width / 2; // 原点を中心に持ってくる
     mouse.y = -y + height / 2; // 軸を反転して原点を中心に持ってくる
@@ -65,17 +75,9 @@ function init() {
   // 毎フレーム時に実行されるループイベントです
   function tick() {
     // メッシュを回転させる
-    // mesh.rotation.x = Math.PI / 4;
-    // mesh.rotation.y = Math.PI / 4;
-    mesh.rotation.x += 0.01;
-    mesh.rotation.y += 0.01;
-    mesh.rotation.z += 0.01;
-    // ライトを周回させる
-    //   pointLight.position.set(
-    //     500 * Math.sin(1000 / 500),
-    //     500 * Math.sin(1000 / 1000),
-    //     500 * Math.cos(1000 / 500)
-    //   );
+    // mesh.rotation.x += 0.01;
+    // mesh.rotation.y += 0.01;
+    // mesh.rotation.z += 0.01;
 
     // レンダリング
     renderer.render(scene, camera);
