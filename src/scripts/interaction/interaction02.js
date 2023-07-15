@@ -63,7 +63,7 @@ function init() {
 
   //   scroll
   function scrolled(y) {
-    increment_scrollY = y;
+    increment_scrollY = y * 2;
   }
   scrolled(window.scrollY);
 
