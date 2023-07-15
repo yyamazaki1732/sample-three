@@ -1,83 +1,81 @@
 import * as THREE from "three";
 
 window.addEventListener("DOMContentLoaded", init);
-
 function init() {
   // サイズを指定
   const width = window.innerWidth;
   const height = window.innerHeight;
-  let rot = 0;
-
+  const mouse = new THREE.Vector2(0, 0);
   // レンダラーを作成
   const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector("#myCanvas"),
+    antialias: true,
+    // alpha: true,
   });
+  renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(width, height);
-
   // シーンを作成
   const scene = new THREE.Scene();
 
   // カメラを作成
-  const camera = new THREE.PerspectiveCamera(40, width / height);
 
-  // 平行光源を作成
-  const directionalLight = new THREE.DirectionalLight(0xffffff);
-  directionalLight.position.set(1, 1, 1);
-  scene.add(directionalLight);
+  const fov = 45;
+  const fovRad = (fov / 2) * (Math.PI / 180); // 視野角をラジアンに変換
+  const dist = height / 2 / Math.tan(fovRad); // ウィンドウぴったりのカメラ距離
 
+  const camera = new THREE.PerspectiveCamera(fov, width / height, 1, dist * 2);
+  camera.position.z = dist;
+
+  // ドーナツを作成
+  const geometry = new THREE.TorusKnotGeometry(100, 40, 200, 200);
   // マテリアルを作成
-  const geometry = new THREE.TorusGeometry(200, 50, 50);
-  const material = new THREE.MeshNormalMaterial();
-  const box = new THREE.Mesh(geometry, material);
-  scene.add(box);
+  const material = new THREE.MeshPhongMaterial({ color: 0xffffff });
+  // メッシュを作成
+  const mesh = new THREE.Mesh(geometry, material);
+  // 3D空間にメッシュを追加
+  scene.add(mesh);
 
-  // 星屑を作成します (カメラの動きをわかりやすくするため)
-  createStarField();
+  // 平行光源
+  const spotLight = new THREE.SpotLight(0xff00ff);
+  spotLight.position.set(0, 0, dist);
+  scene.add(spotLight);
 
-  /** 星屑を作成します */
-  function createStarField() {
-    // 頂点情報を作詞絵
-    const vertices = [];
-    for (let i = 0; i < 1000; i++) {
-      const x = 3000 * (Math.random() - 0.5);
-      const y = 3000 * (Math.random() - 0.5);
-      const z = 3000 * (Math.random() - 0.5);
+  // ポイント光源
+  //   const pointLight = new THREE.PointLight(0xffffff, 2, 1000);
+  //   scene.add(pointLight);
+  //   const pointLightHelper = new THREE.PointLightHelper(pointLight, 30);
+  //   scene.add(pointLightHelper);
 
-      vertices.push(x, y, z);
-    }
+  //   mousemove
 
-    // 形状データを作成
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute(
-      "position",
-      new THREE.Float32BufferAttribute(vertices, 3)
-    );
+  function mouseMoved(x, y) {
+    mouse.x = x - width / 2; // 原点を中心に持ってくる
+    mouse.y = -y + height / 2; // 軸を反転して原点を中心に持ってくる
 
-    // マテリアルを作成
-
-    const material = new THREE.PointsMaterial({
-      size: 10,
-      color: 0xffffff,
-    });
-
-    // 物体を作成
-    const mesh = new THREE.Points(geometry, material);
-    scene.add(mesh);
+    spotLight.position.x = mouse.x;
+    spotLight.position.y = mouse.y;
   }
+
+  window.addEventListener("mousemove", (e) => {
+    mouseMoved(e.clientX, e.clientY);
+  });
 
   tick();
 
   // 毎フレーム時に実行されるループイベントです
   function tick() {
-    rot += 0.5; // 毎フレーム角度を0.5度ずつ足していく
-    // ラジアンに変換する
-    const radian = (rot * Math.PI) / 180;
-    // 角度に応じてカメラの位置を設定
-    camera.position.x = 900 * Math.cos(radian);
-    camera.position.z = 1000 * Math.sin(radian);
-    camera.position.y = 1000 * Math.sin(radian);
-    // 原点方向を見つめる
-    camera.lookAt(new THREE.Vector3(0, 0, 0));
+    // メッシュを回転させる
+    // mesh.rotation.x = Math.PI / 4;
+    // mesh.rotation.y = Math.PI / 4;
+    mesh.rotation.x += 0.01;
+    mesh.rotation.y += 0.01;
+    mesh.rotation.z += 0.01;
+    // ライトを周回させる
+    //   pointLight.position.set(
+    //     500 * Math.sin(1000 / 500),
+    //     500 * Math.sin(1000 / 1000),
+    //     500 * Math.cos(1000 / 500)
+    //   );
 
     // レンダリング
     renderer.render(scene, camera);
