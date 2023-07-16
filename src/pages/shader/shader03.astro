@@ -47,7 +47,7 @@ import Layout from '../../layouts/Layout.astro';
 	void main() {
 		vec2 uv = vUv;
 
-		float moz = uPercent * 0.01;
+		float moz = uPercent * 0.009;
 
 		if( moz > 0. ) {// 0では割れないので、if文で保護
     		uv = floor( uv / moz ) * moz + ( moz * .5 );

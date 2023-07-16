@@ -12,7 +12,7 @@ function init() {
     canvas: document.querySelector("#myCanvas"),
   });
   renderer.setSize(width, height);
-
+  renderer.setPixelRatio(window.devicePixelRatio);
   // シーンを作成
   const scene = new THREE.Scene();
 
@@ -50,8 +50,8 @@ function init() {
   const mat = new THREE.ShaderMaterial({
     uniforms: uniforms,
     vertexShader: document.getElementById("v-shader").textContent,
-    fragmentShader: document.getElementById("f-shader").textContent,
-    wireframe: false,
+    // fragmentShader: document.getElementById("f-shader").textContent,
+    wireframe: true,
   });
   const box = new THREE.Mesh(geometry, mat);
   scene.add(box);

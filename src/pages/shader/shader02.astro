@@ -31,10 +31,11 @@ import Layout from '../../layouts/Layout.astro';
 	uniform float uAspect;// 画面のアスペクト比
 	varying vec2 vUv;
 	uniform float uTime;// 時間
+	uniform vec2 uMouse; // mouse座標
 
 	void main() {
 		vec2 uv = vec2( vUv.x * uAspect, vUv.y );// xをアスペクト補正したテクスチャ座標
-  		vec2 center = vec2( .5 * uAspect, .5 );// xをアスペクト補正した画面の中心
+  		vec2 center = vec2( uMouse.x * uAspect, uMouse.y );// xをアスペクト補正した画面の中心
 
 		float radius = 0.05 + sin( uTime * 2.0 ) * 0.025;// 時間で半径をアニメーションさせる
 		float lightness = radius / length( uv - center );// 半径を距離で割る

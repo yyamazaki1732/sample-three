@@ -29,7 +29,7 @@ function init() {
 
   // マテリアルを作成
   // 平面をつくる（幅, 高さ, 横分割数, 縦分割数）
-  const geometry = new THREE.PlaneGeometry(2, 2, 1, 1);
+  const geometry = new THREE.PlaneGeometry(2, 2, 10, 10);
   const mat = new THREE.ShaderMaterial({
     vertexShader: document.getElementById("v-shader").textContent,
     fragmentShader: document.getElementById("f-shader").textContent,

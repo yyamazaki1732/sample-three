@@ -23,12 +23,17 @@ function init() {
   camera.lookAt(new THREE.Vector3(0, 0, 0));
 
   // uniform変数を定義
+  let nextMouse = new THREE.Vector2(0.5, 0.5);
+  let mouse = new THREE.Vector2(0.5, 0.5);
   const uniforms = {
     uAspect: {
       value: width / height,
     },
     uTime: {
       value: 0.0,
+    },
+    uMouse: {
+      value: mouse,
     },
   };
 
@@ -44,6 +49,16 @@ function init() {
   const box = new THREE.Mesh(geometry, mat);
   scene.add(box);
 
+  const mouseMoved = (x, y) => {
+    // 左上原点から左下原点に変換
+    mouse.x = x / width;
+    mouse.y = 1.0 - y / height;
+  };
+
+  window.addEventListener("mousemove", (e) => {
+    mouseMoved(e.clientX, e.clientY);
+  });
+
   tick();
 
   // 毎フレーム時に実行されるループイベントです
@@ -54,6 +69,7 @@ function init() {
     const sec = performance.now() / 1000;
 
     uniforms.uTime.value = sec; // シェーダーに渡す時間を更新
+    uniforms.uMouse.value.lerp(mouse, 0.2);
 
     requestAnimationFrame(tick);
   }

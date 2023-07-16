@@ -8,10 +8,10 @@ import Layout from '../../layouts/Layout.astro';
 		<canvas id="myCanvas"></canvas>
 	</main>
 	<!-- ===============================================
-	 # vertex
+	 # vertex（頂点シェーダー）
 	================================================ -->
 	<script id="v-shader" type="x-shader/x-vertex">
-	varying vec2 vUv;
+	varying vec2 vUv; // vUv: 頂点シェーダーからピクセルシェーダーに変数を送るための装飾子
 		void main() {
 			// uv: ShaderMaterialで補完される vec2 型(xy)の変数。テクスチャ座標のこと。
 			vUv = uv;
@@ -21,16 +21,15 @@ import Layout from '../../layouts/Layout.astro';
 
 			gl_Position = vec4( pos, 1 );
 		}
-
 	</script>
 	<!-- ===============================================
-	 # fragment
+	 # fragment（フラグメントシェーダー）
 	================================================ -->
 	<script id="f-shader" type="x-shader/x-fragment">
 	varying vec2 vUv;
 	void main() {
 		// position: ShaderMaterialで補完される vec3 型(xyz)の変数。ジオメトリの頂点のこと。
-		vec4 color = vec4( vUv.y, vUv.x, 0.0, 1 );// テクスチャ座標を r g に入れる
+		vec4 color = vec4( vUv.x, vUv.y, 0.0, 1 );// テクスチャ座標を r g に入れる
 		// vec4 color = vec4( vUv.x, vUv.y, 0.7, 1.0 );// テクスチャ座標を r g に入れる
 		gl_FragColor = color;
 	}
