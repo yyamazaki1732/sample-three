@@ -4,16 +4,22 @@ import Layout from '../../layouts/Layout.astro';
 
 <Layout title="Welcome to Astro.">
 
+	<style>
+		img {
+			display: none
+		}
+	</style>
 	
 	<main>
+
 		<canvas id="myCanvas"></canvas>
+		<img src="/public/whale.jpg" alt="" id="picture">
 	</main>
 	<!-- ===============================================
 	# vertex
 	================================================ -->
 	<script id="v-shader" type="x-shader/x-vertex">
 	varying vec2 vUv;
-
 	uniform float uFixAspect;
 
 	void main() {
@@ -29,11 +35,11 @@ import Layout from '../../layouts/Layout.astro';
 	# fragment
 	================================================ -->
 	<script id="f-shader" type="x-shader/x-fragment">
-	varying vec2 vUv;
+	// varying vec2 vUv;
 
-	uniform sampler2D uTex;
-	uniform float uPercent;
-	uniform float uTime;
+	// uniform sampler2D uTex;
+	// uniform float uPercent;
+	// uniform float uTime;
 
 	// void main() {
 	// 	vec3 color = texture2D( uTex, vUv ).rgb;
@@ -44,33 +50,25 @@ import Layout from '../../layouts/Layout.astro';
 	// 	gl_FragColor = vec4( color, 1.0 );
 	// }
 
-	void main() {
-		vec2 uv = vUv;
+		varying vec2 vUv;
 
-		float moz = uPercent * 0.01;
+uniform float uTime;
+uniform float uPercent;
+uniform sampler2D uTex;
 
-		if( moz > 0. ) {// 0では割れないので、if文で保護
-    		uv = floor( uv / moz ) * moz + ( moz * .5 );
-		}
+void main() {
+  vec2 uv = vUv;
 
-		vec3 color = texture2D( uTex, uv ).rgb;
+  float t = uTime * 6.;
+  float amount = uPercent * 0.02;
 
-		gl_FragColor = vec4( color, 1.0 );
-	}
+  vec2 uvOffset = vec2( cos( uv.y * 20. + t ), sin( uv.x * 10. - t ) ) * amount;
 
-	// void main() {
-	// 	vec2 uv = vUv;
+  vec3 color = texture2D( uTex, uv + uvOffset ).rgb;
 
-	// 	float t = uTime * 1.;
-	// 	float amount =  0.002;
+  gl_FragColor = vec4( color, 1.0 );
+}
 
-	// 	vec2 uvOffset = vec2( cos( uv.y * 20. + t ), sin( uv.x * 10. - t ) ) * amount;
-	// 	// vec2 uvOffset = vec2( cos( uv.x * 80. ), sin( uv.y * 80. ) ) * amount;
-
-	// 	vec3 color = texture2D( uTex, uv + uvOffset ).rgb;
-
-	// 	gl_FragColor = vec4( color, 1.0 );
-	// }
 	</script>
 
 </Layout>
