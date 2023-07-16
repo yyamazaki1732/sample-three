@@ -1,0 +1,77 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Welcome to Astro.">
+
+	
+	<main>
+		<canvas id="myCanvas"></canvas>
+	</main>
+	<!-- ===============================================
+	# vertex
+	================================================ -->
+	<script id="v-shader" type="x-shader/x-vertex">
+	varying vec2 vUv;
+
+	uniform float uFixAspect;
+
+	void main() {
+	// 余白ができないようにアスペクト補正
+		vUv = uv - .5;
+	  	vUv.y *= uFixAspect;
+		vUv += .5;
+
+		gl_Position = vec4( position, 1.0 );
+	}
+	</script>
+	<!-- ===============================================
+	# fragment
+	================================================ -->
+	<script id="f-shader" type="x-shader/x-fragment">
+	varying vec2 vUv;
+
+	uniform sampler2D uTex;
+	uniform float uPercent;
+	uniform float uTime;
+
+	// void main() {
+	// 	vec3 color = texture2D( uTex, vUv ).rgb;
+	// 	vec3 invert = 1. - color;
+
+	// 	color = mix( color, invert, uPercent );
+
+	// 	gl_FragColor = vec4( color, 1.0 );
+	// }
+
+	void main() {
+		vec2 uv = vUv;
+
+		float moz = uPercent * 0.01;
+
+		if( moz > 0. ) {// 0では割れないので、if文で保護
+    		uv = floor( uv / moz ) * moz + ( moz * .5 );
+		}
+
+		vec3 color = texture2D( uTex, uv ).rgb;
+
+		gl_FragColor = vec4( color, 1.0 );
+	}
+
+	// void main() {
+	// 	vec2 uv = vUv;
+
+	// 	float t = uTime * 1.;
+	// 	float amount =  0.002;
+
+	// 	vec2 uvOffset = vec2( cos( uv.y * 20. + t ), sin( uv.x * 10. - t ) ) * amount;
+	// 	// vec2 uvOffset = vec2( cos( uv.x * 80. ), sin( uv.y * 80. ) ) * amount;
+
+	// 	vec3 color = texture2D( uTex, uv + uvOffset ).rgb;
+
+	// 	gl_FragColor = vec4( color, 1.0 );
+	// }
+	</script>
+
+</Layout>
+<script src="../../scripts/shader/shader05.js"></script>
