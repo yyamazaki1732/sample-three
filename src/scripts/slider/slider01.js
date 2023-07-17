@@ -1,208 +1,237 @@
 import * as THREE from "three";
 
-(() => {
-  const init = () => {
-    // ===============================================
-    // # splide
-    // ===============================================
-    const TARGET = ".section-first-view .splide";
-    const SLIDE_DELAY = 5000;
-    const OPTIONS = {
-      mediaQuery: "min",
-      fixedWidth: "100%",
-      type: "fade",
-      autoplay: true,
-      easing: "ease",
-      interval: SLIDE_DELAY,
-      speed: 800,
-      arrows: false,
-      pagination: false,
-      perMove: 1,
-      rewind: true,
-      pauseOnHover: false,
-      pauseOnFocus: false,
-      classes: {
-        page: "splide__pagination__page section-first-view__bar",
-      },
-    };
-    const MY_SLIDE = new Splide(TARGET, OPTIONS);
-
-    const ProgressBar = document.getElementsByClassName(
-      "section-first-view__bar"
-    );
-
-    // ===============================================
-    // # updateProgress
-    // ===============================================
-    const updateProgress = (index) => {
-      for (let i = 0; i < ProgressBar.length; i++) {
-        ProgressBar[i].children[0].style.transition = "";
-        ProgressBar[i].children[0].style.transform = "scaleX(0)";
-      }
-
-      setTimeout(() => {
-        ProgressBar[index].children[0].style.transition =
-          SLIDE_DELAY + "ms linear";
-        ProgressBar[index].children[0].style.transform = "scaleX(1)";
-      }, 100);
-    };
-    // ===============================================
-    // # shader
-    // ===============================================
-    const SHADER_TARGET = document.querySelectorAll(".shader-target");
-
-    SHADER_TARGET.forEach((target, index) => {
-      // サイズを指定
-      const width = window.innerWidth / 2;
-      const height = width * (704 / 603);
-      // レンダラーを作成
-      const renderer = new THREE.WebGLRenderer({
-        canvas: document.getElementsByClassName("myCanvas")[index],
-      });
-      renderer.setSize(width, height);
-
-      // シーンを作成
-      const scene = new THREE.Scene();
-
-      // カメラを作成
-      const camera = new THREE.PerspectiveCamera(90, width / height);
-      camera.position.x = 100;
-      // camera.position.z = 0;
-      camera.lookAt(new THREE.Vector3(0, 0, 0));
-
-      const image_src = target.getAttribute("src");
-      const texture = new THREE.TextureLoader().load(image_src);
-      let targetPercent = 0;
-
-      // uniform変数を定義
-      const uniforms = {
-        uTime: {
-          value: 0.0,
-        },
-        uMouse: {
-          value: new THREE.Vector2(0.5, 0.5),
-        },
-        uTex: {
-          value: texture, // テクスチャ
-        },
-        uPercent: {
-          value: targetPercent,
-        },
-        dispFactor: { type: "f", value: 0.0 },
-        currentImage: { type: "t", value: target },
-        nextImage: { type: "t", value: target[index + 1] },
-      };
-
-      //vertexShader
-      let vertex = `
-        varying vec2 vUv;
-        // uniform float uFixAspect;
-
-        void main() {
-        // 余白ができないようにアスペクト補正
+const setAnimation = () => {
+  const displacementSlider = function (opts) {
+    let vertex = `
+      varying vec2 vUv;
+      void main() {
         vUv = uv;
-          // vUv = uv - .5;
-          //   vUv.y *= uFixAspect;
-          // vUv += .5;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+      }
+  `;
 
-          gl_Position = vec4( position, 1.0 );
-        }
-      `;
+    let fragment = `
+      
+      varying vec2 vUv;
 
-      //vertexShader
-      let fragment = `
-        varying vec2 vUv;
+      uniform sampler2D currentImage;
+      uniform sampler2D nextImage;
 
-        uniform float uTime;
-        uniform float uPercent;
-        uniform sampler2D uTex;
+      uniform float dispFactor;
 
-        // test
-        uniform sampler2D currentImage;
-        uniform sampler2D nextImage;
-        uniform float dispFactor;
+      void main() {
 
-        void main() {
           vec2 uv = vUv;
-
-          // test
           vec4 _currentImage;
           vec4 _nextImage;
           float intensity = 0.3;
+
           vec4 orig1 = texture2D(currentImage, uv);
           vec4 orig2 = texture2D(nextImage, uv);
+          
           _currentImage = texture2D(currentImage, vec2(uv.x, uv.y + dispFactor * (orig2 * intensity)));
+
           _nextImage = texture2D(nextImage, vec2(uv.x, uv.y + (1.0 - dispFactor) * (orig1 * intensity)));
 
-          float t = uTime * 6.;
-          float amount = uPercent * 0.02;
+          vec4 finalTexture = mix(_currentImage, _nextImage, dispFactor);
 
-          vec2 uvOffset = vec2( cos( uv.y * 20. + t ), sin( uv.x * 10. - t ) ) * amount;
+          gl_FragColor = finalTexture;
 
-          vec3 color = texture2D( uTex, uv + uvOffset ).rgb;
-
-          gl_FragColor = vec4( color, 1.0 );
-        }
-      `;
-
-      // マテリアルを作成
-      // 平面をつくる（幅, 高さ, 横分割数, 縦分割数）
-      const geometry = new THREE.PlaneGeometry(2, 2, 10, 10);
-      const mat = new THREE.ShaderMaterial({
-        uniforms: uniforms,
-        vertexShader: vertex,
-        fragmentShader: fragment,
-        wireframe: false,
-        transparent: true,
-        opacity: 1.0,
-      });
-      const box = new THREE.Mesh(geometry, mat);
-      scene.add(box);
-
-      tick();
-      function tick() {
-        // レンダリング
-        renderer.render(scene, camera);
-        const sec = performance.now() / 1000;
-
-        uniforms.uTime.value = sec; // シェーダーに渡す時間を更新
-        uniforms.uPercent.value = targetPercent;
-        requestAnimationFrame(tick);
       }
+  `;
 
-      //mouse press & release
-      const mousePressed = () => {
-        targetPercent = 1.0;
-        setTimeout(() => {
-          targetPercent = 0.0;
-        }, 800);
-      };
+    let images = opts.images,
+      image,
+      sliderImages = [];
+    let canvasWidth = images[0].clientWidth;
+    let canvasHeight = images[0].clientHeight;
+    let parent = opts.parent;
+    let renderWidth = Math.max(
+      document.documentElement.clientWidth,
+      window.innerWidth || 0
+    );
+    let renderHeight = Math.max(
+      document.documentElement.clientHeight,
+      window.innerHeight || 0
+    );
 
-      MY_SLIDE.on("move", () => {
-        mousePressed();
-      });
+    let renderW, renderH;
+
+    if (renderWidth > canvasWidth) {
+      renderW = renderWidth;
+    } else {
+      renderW = canvasWidth;
+    }
+
+    renderH = canvasHeight;
+
+    let renderer = new THREE.WebGLRenderer({
+      antialias: false,
     });
 
-    // ===============================================
-    // # setAnimation
-    // ===============================================
-    const setAnimation = () => {
-      MY_SLIDE.on("mounted", () => {
-        updateProgress(0);
-      });
-      MY_SLIDE.on("move", () => {
-        updateProgress(MY_SLIDE.index);
-      });
-      for (let i = 0; i < ProgressBar.length; i++) {
-        ProgressBar[i].addEventListener("click", () => {
-          MY_SLIDE.go(i);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setClearColor(0x23272a, 1.0);
+    renderer.setSize(renderW, renderH);
+    parent.appendChild(renderer.domElement);
+
+    let loader = new THREE.TextureLoader();
+    loader.crossOrigin = "anonymous";
+
+    images.forEach((img) => {
+      image = loader.load(img.getAttribute("src") + "?v=" + Date.now());
+      image.magFilter = image.minFilter = THREE.LinearFilter;
+      image.anisotropy = renderer.capabilities.getMaxAnisotropy();
+      sliderImages.push(image);
+    });
+
+    let scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x23272a);
+    let camera = new THREE.OrthographicCamera(
+      renderWidth / -2,
+      renderWidth / 2,
+      renderHeight / 2,
+      renderHeight / -2,
+      1,
+      1000
+    );
+
+    camera.position.z = 1;
+
+    let mat = new THREE.ShaderMaterial({
+      uniforms: {
+        dispFactor: { type: "f", value: 0.0 },
+        currentImage: { type: "t", value: sliderImages[0] },
+        nextImage: { type: "t", value: sliderImages[1] },
+      },
+      vertexShader: vertex,
+      fragmentShader: fragment,
+      transparent: true,
+      opacity: 1.0,
+    });
+
+    let geometry = new THREE.PlaneBufferGeometry(
+      parent.offsetWidth,
+      parent.offsetHeight,
+      1
+    );
+    let object = new THREE.Mesh(geometry, mat);
+    object.position.set(0, 0, 0);
+    scene.add(object);
+
+    let addEvents = function () {
+      let pagButtons = Array.from(
+        document.getElementById("pagination").querySelectorAll("button")
+      );
+      let isAnimating = false;
+
+      pagButtons.forEach((el) => {
+        el.addEventListener("click", function () {
+          if (!isAnimating) {
+            isAnimating = true;
+
+            document
+              .getElementById("pagination")
+              .querySelectorAll(".active")[0].className = "";
+            this.className = "active";
+
+            let slideId = parseInt(this.dataset.slide, 10);
+
+            mat.uniforms.nextImage.value = sliderImages[slideId];
+            mat.uniforms.nextImage.needsUpdate = true;
+
+            TweenLite.to(mat.uniforms.dispFactor, 1, {
+              value: 1,
+              ease: "Expo.easeInOut",
+              onComplete: function () {
+                mat.uniforms.currentImage.value = sliderImages[slideId];
+                mat.uniforms.currentImage.needsUpdate = true;
+                mat.uniforms.dispFactor.value = 0.0;
+                isAnimating = false;
+              },
+            });
+
+            let slideTitleEl = document.getElementById("slide-title");
+            let slideStatusEl = document.getElementById("slide-status");
+            let nextSlideTitle = document.querySelectorAll(
+              `[data-slide-title="${slideId}"]`
+            )[0].innerHTML;
+            let nextSlideStatus = document.querySelectorAll(
+              `[data-slide-status="${slideId}"]`
+            )[0].innerHTML;
+
+            TweenLite.fromTo(
+              slideTitleEl,
+              0.5,
+              {
+                autoAlpha: 1,
+                y: 0,
+              },
+              {
+                autoAlpha: 0,
+                y: 20,
+                ease: "Expo.easeIn",
+                onComplete: function () {
+                  slideTitleEl.innerHTML = nextSlideTitle;
+
+                  TweenLite.to(slideTitleEl, 0.5, {
+                    autoAlpha: 1,
+                    y: 0,
+                  });
+                },
+              }
+            );
+
+            TweenLite.fromTo(
+              slideStatusEl,
+              0.5,
+              {
+                autoAlpha: 1,
+                y: 0,
+              },
+              {
+                autoAlpha: 0,
+                y: 20,
+                ease: "Expo.easeIn",
+                onComplete: function () {
+                  slideStatusEl.innerHTML = nextSlideStatus;
+
+                  TweenLite.to(slideStatusEl, 0.5, {
+                    autoAlpha: 1,
+                    y: 0,
+                    delay: 0.1,
+                  });
+                },
+              }
+            );
+          }
         });
-      }
+      });
     };
 
-    ProgressBar != null ? setAnimation() : null;
-    MY_SLIDE.mount();
+    addEvents();
+
+    window.addEventListener("resize", function (e) {
+      renderer.setSize(renderW, renderH);
+    });
+
+    let animate = function () {
+      requestAnimationFrame(animate);
+
+      renderer.render(scene, camera);
+    };
+    animate();
   };
 
-  window.addEventListener("DOMContentLoaded", init);
-})();
+  imagesLoaded(document.querySelectorAll("img"), () => {
+    document.body.classList.remove("loading");
+
+    const el = document.getElementById("slider");
+    const imgs = Array.from(el.querySelectorAll("img"));
+    new displacementSlider({
+      parent: el,
+      images: imgs,
+    });
+  });
+};
+
+window.addEventListener("DOMContentLoaded", setAnimation);

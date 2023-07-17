@@ -3,356 +3,369 @@ import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout title="Welcome to Astro.">
-  <div class="section-first-view">
-    <div class="splide" aria-label="商品のリスト">
-      <div class="section-first-view__wrapper" style="margin-top: -121px;">
-        <div class="splide__track">
-          <ul class="splide__list">
-            <li class="splide__slide">
-              <a
-                href="#!"
-                aria-label="AW23 | out-of"
-                class="section-first-view__link image-half-width"
-                tabindex="-1"
-              >
-                <picture>
-                  <source
-                    srcset="//anice-yamazaki.myshopify.com/cdn/shop/files/fv01-01.jpg?crop=center&height=2560&v=1687073688&width=2048"
-                    type="image/jpg"
-                    media="(max-width: 1023px)"
-                  />
-                  <img
-                    src="//anice-yamazaki.myshopify.com/cdn/shop/files/fv01-01.jpg?v=1687073688&width=2048"
-                    width="2048"
-                    height="2560"
-                    class="utility-collection-card shader-target"
-                    style=" object-fit: cover; width: 100%; height: 100%;"
-                    loading="eager"
-                  />
-                </picture>
-
-                <img
-                  src="//anice-yamazaki.myshopify.com/cdn/shop/files/fv01-02.jpg?v=1687073687&width=2048"
-                  width="2048"
-                  height="2560"
-                  class="utility-collection-card shader-target"
-                  style=" object-fit: cover; width: 100%; height: 100%;"
-                  loading="eager"
-                />
-              </a>
-              <div class="section-first-view__slide-title-block">
-                <h1 class="section-first-view__slide-title display-font">
-                  AW23 | out-of
-                </h1>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <a
-                href="#!"
-                aria-label="PICK UP"
-                class="section-first-view__link image-half-width"
-                tabindex="-1"
-              >
-                <picture>
-                  <source
-                    srcset="Liquid error (sections/first-view line 22): invalid url input"
-                    type="image/jpg"
-                    media="(max-width: 1023px)"
-                  />
-                  <img
-                    src="//anice-yamazaki.myshopify.com/cdn/shop/files/banner01.jpg?v=1686968350&width=2048"
-                    width="2048"
-                    height="2560"
-                    class="utility-collection-card shader-target"
-                    style=" object-fit: cover; width: 100%; height: 100%;"
-                    loading="eager"
-                  />
-                </picture>
-
-                <img
-                  src="//anice-yamazaki.myshopify.com/cdn/shop/files/banner02.jpg?v=1686968373&width=2048"
-                  width="2048"
-                  height="2560"
-                  class="utility-collection-card shader-target"
-                  style=" object-fit: cover; width: 100%; height: 100%;"
-                  loading="eager"
-                />
-              </a>
-              <div class="section-first-view__slide-title-block">
-                <h1 class="section-first-view__slide-title display-font">
-                  PICK UP
-                </h1>
-              </div>
-            </li>
-
-            <li class="splide__slide">
-              <a
-                href="#!"
-                aria-label="ARCHIVE"
-                class="section-first-view__link image-half-width"
-              >
-                <picture>
-                  <source
-                    srcset="//anice-yamazaki.myshopify.com/cdn/shop/files/fv-aw22-sp.jpg?crop=center&height=2560&v=1689216801&width=2048"
-                    type="image/jpg"
-                    media="(max-width: 1023px)"
-                  />
-                  <img
-                    src="//anice-yamazaki.myshopify.com/cdn/shop/files/fv-aw22-pc.jpg?v=1689216753&width=2048"
-                    width="2048"
-                    height="2560"
-                    class="utility-collection-card shader-target"
-                    style=" object-fit: cover; width: 100%; height: 100%;"
-                    loading="eager"
-                  />
-                </picture>
-
-                <img
-                  src="//anice-yamazaki.myshopify.com/cdn/shop/files/fv-ss22-pc.jpg?v=1689216812&width=2048"
-                  width="2048"
-                  height="2560"
-                  class="utility-collection-card shader-target"
-                  style=" object-fit: cover; width: 100%; height: 100%;"
-                  loading="eager"
-                />
-              </a>
-              <div class="section-first-view__slide-title-block">
-                <h1 class="section-first-view__slide-title display-font">
-                  ARCHIVE
-                </h1>
-              </div>
-            </li>
-          </ul>
+  <body class="loading">
+    <main>
+      <div id="slider">
+        <div class="slider-inner">
+          <div id="slider-content">
+            <div class="meta">Species</div>
+            <h2 id="slide-title">Amur <br />Leopard</h2>
+            <span data-slide-title="0">Amur <br />Leopard</span>
+            <span data-slide-title="1">Asiatic <br />Lion</span>
+            <span data-slide-title="2">Siberian <br />Tiger</span>
+            <span data-slide-title="3">Brown <br />Bear</span>
+            <div class="meta">Status</div>
+            <div id="slide-status">Critically Endangered</div>
+            <span data-slide-status="0">Critically Endangered</span>
+            <span data-slide-status="1">Endangered</span>
+            <span data-slide-status="2">Endangered</span>
+            <span data-slide-status="3">Least Concern</span>
+          </div>
         </div>
 
-        <ul
-          class="section-first-view__pagination"
-          aria-label="Select a slide to show"
-        >
-          <li
-            class="section-first-view__bar"
-            role="button"
-            aria-label="Go to slide1"
-          >
-            <div
-              class="section-first-view__fill"
-              role="progressbar"
-              aria-valuenow="0"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="transform: scaleX(0);"
-            >
-            </div>
-          </li>
+        <img
+          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123024/leopard2.jpg"
+        />
+        <img
+          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123024/lion2.jpg"
+        />
+        <img
+          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123024/tiger2.jpg"
+        />
+        <img
+          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123024/bear2.jpg"
+        />
 
-          <li
-            class="section-first-view__bar"
-            role="button"
-            aria-label="Go to slide2"
-          >
-            <div
-              class="section-first-view__fill"
-              role="progressbar"
-              aria-valuenow="33"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="transform: scaleX(0);"
-            >
-            </div>
-          </li>
-
-          <li
-            class="section-first-view__bar"
-            role="button"
-            aria-label="Go to slide3"
-          >
-            <div
-              class="section-first-view__fill"
-              role="progressbar"
-              aria-valuenow="66"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="transform: scaleX(1); transition: all 5000ms linear 0s;"
-            >
-            </div>
-          </li>
-        </ul>
+        <div id="pagination">
+          <button class="active" data-slide="0"></button>
+          <button data-slide="1"></button>
+          <button data-slide="2"></button>
+          <button data-slide="3"></button>
+        </div>
       </div>
-    </div>
-  </div>
-  <canvas class="myCanvas"></canvas>
-  <canvas class="myCanvas"></canvas>
-  <canvas class="myCanvas"></canvas>
-  <canvas class="myCanvas"></canvas>
-  <canvas class="myCanvas"></canvas>
-  <canvas class="myCanvas"></canvas>
+    </main>
+  </body>
 </Layout>
-<script
-  src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.js"
+></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"
 ></script>
-<link
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.js"
+></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"
+></script>
+<!-- <link
   href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"
   rel="stylesheet"
-/>
+/> -->
 
 <script src="../../scripts/slider/slider01.js"></script>
 
 <style>
-  .section-first-view__wrapper {
-    margin-top: -3rem;
+  audio,
+  canvas,
+  video {
+    display: inline-block;
   }
-
-  @media screen and (min-width: 1024px) {
-    .section-first-view__wrapper {
-      margin-top: -7.5rem;
-    }
+  audio:not([controls]) {
+    display: none;
+    height: 0;
   }
-
-  .section-first-view__link {
-    position: relative;
-  }
-
-  .section-first-view__link img {
-    aspect-ratio: 4/5;
-    min-height: 100vh;
-    min-height: 100lvh;
-  }
-
-  .section-first-view__link > img {
+  [hidden] {
     display: none;
   }
-
-  .section-first-view__slide-title-block {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    height: 100lvh;
-    pointer-events: none;
+  html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
   }
-
-  .section-first-view__slide-title {
-    position: absolute;
-    bottom: 19.1904047976vh;
-    bottom: 19.1904047976lvh;
-    left: 50%;
-    translate: -50% -32px;
-    color: #fff;
-    font-size: 0.875rem;
-    line-height: 100%;
-    letter-spacing: 0.05em;
+  body {
+    margin: 0;
   }
-
-  .section-first-view__pagination {
-    -webkit-box-pack: center !important;
-    -webkit-justify-content: center !important;
-    -ms-flex-pack: center !important;
-    -webkit-box-align: end;
-    -webkit-align-items: flex-end;
-    -ms-flex-align: end;
-    -webkit-column-gap: 4px;
-    -moz-column-gap: 4px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    position: absolute !important;
-    top: 0;
-    left: 50%;
-    column-gap: 4px;
-    align-items: flex-end;
-    justify-content: center !important;
-    width: 40%;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
-    height: 100vh;
-    height: 100lvh;
-    margin: 0 auto;
-    padding-bottom: 18.5907046477vh;
-    padding-bottom: 18.5907046477lvh;
-    translate: -50% 0;
-    pointer-events: none;
+  a:focus {
+    outline: thin dotted;
   }
-
-  .section-first-view__bar {
+  a:active,
+  a:hover {
+    outline: 0;
+  }
+  h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+  }
+  abbr[title] {
+    border-bottom: 1px dotted;
+  }
+  b,
+  strong {
+    font-weight: bold;
+  }
+  dfn {
+    font-style: italic;
+  }
+  hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+  }
+  mark {
+    background: #ff0;
+    color: #000;
+  }
+  code,
+  kbd,
+  pre,
+  samp {
+    font-family: monospace, serif;
+    font-size: 1em;
+  }
+  pre {
+    white-space: pre-wrap;
+  }
+  q {
+    quotes: "\201C""\201D""\2018""\2019";
+  }
+  small {
+    font-size: 80%;
+  }
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
     position: relative;
-    width: 40px;
-    height: 32px;
-    border-radius: 0;
+    vertical-align: baseline;
+  }
+  img {
+    border: 0;
+  }
+  svg:not(:root) {
+    overflow: hidden;
+  }
+  figure {
+    margin: 0;
+  }
+  fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+  }
+  legend {
+    border: 0;
+    padding: 0;
+  }
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+  }
+  button,
+  input {
+    line-height: normal;
+  }
+  button,
+  select {
+    text-transform: none;
+  }
+  button,
+  html input[type="button"],
+  input[type="reset"],
+  input[type="submit"] {
+    -webkit-appearance: button;
     cursor: pointer;
-    pointer-events: initial;
   }
-
-  .section-first-view__bar:before {
-    -webkit-box-shadow: 1px 1px 28px 1px rgba(118, 118, 118, 0.5);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 2px;
-    translate: -50% -50%;
-    background-color: #fff3;
-    box-shadow: 1px 1px 28px 1px #76767680;
-    content: "";
+  button[disabled],
+  html input[disabled] {
+    cursor: default;
   }
-
-  .section-first-view__fill {
-    -webkit-transform-origin: top left;
-    display: block !important;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 2px;
-    transform-origin: top left;
-    translate: -50% -50%;
+  input[type="checkbox"],
+  input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+  }
+  input[type="search"] {
+    -webkit-appearance: textfield;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  button::-moz-focus-inner,
+  input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+  textarea {
+    overflow: auto;
+    vertical-align: top;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+  html {
+    background: #fff;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
     background-color: #fff;
+    overflow: hidden;
   }
-
-  @media screen and (min-width: 1024px) {
-    .section-first-view__link {
-      display: grid;
-      width: 100%;
+  main {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+  #slider {
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+  }
+  #slider canvas {
+    width: 150%;
+    height: 150%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+  #slider img {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    z-index: 0;
+  }
+  .slider-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1060px;
+    height: 100%;
+    margin: 0 auto;
+    z-index: 5;
+  }
+  #slider-content {
+    padding: 0 10px;
+  }
+  #slider-content h2 {
+    font-family: "acta-display", serif;
+    font-weight: 400;
+    font-size: 30px;
+    letter-spacing: -1px;
+    color: white;
+    line-height: 30px;
+    margin: 20px 0 60px;
+  }
+  @media screen and (min-width: 800px) {
+    #slider-content h2 {
+      font-size: 110px;
+      line-height: 100px;
     }
-
-    .section-first-view__link.image-half-width {
-      grid-template: max-content/repeat(2, 50%);
+  }
+  #slider-content span {
+    display: none;
+  }
+  #slider-content .meta {
+    display: inline-block;
+    font-family: "Arial", sans-serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: #88888a;
+    text-transform: uppercase;
+    position: relative;
+  }
+  @media screen and (min-width: 800px) {
+    #slider-content .meta {
+      font-size: 13px;
     }
-
-    .section-first-view__link.image-full-width {
-      grid-template: max-content/repeat(1, 100%);
+  }
+  #slider-content .meta:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: -55px;
+    width: 45px;
+    height: 2px;
+    background-color: #393d40;
+  }
+  #slider-content #slide-status {
+    margin-top: 10px;
+    font-family: "acta-display", serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: white;
+  }
+  @media screen and (min-width: 800px) {
+    #slider-content #slide-status {
+      font-size: 34px;
     }
-
-    .section-first-view__link.image-full-width img {
-      aspect-ratio: 8/5 !important;
-    }
-
-    .section-first-view__link.switch-order picture {
-      -webkit-box-ordinal-group: 3;
-      -webkit-order: 2;
-      -ms-flex-order: 2;
-      order: 2;
-    }
-
-    .section-first-view__link > img {
-      display: block;
-    }
-
-    .section-first-view__slide-title {
-      bottom: 8.8942307692vh;
-      font-size: 1.25rem;
-      line-height: 100%;
-      letter-spacing: 0.05em;
-    }
-
-    .section-first-view__pagination {
-      padding-bottom: 7.2115384615vh;
-    }
-
-    .section-first-view__bar {
-      width: 56px;
-    }
+  }
+  #pagination {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 30px;
+    z-index: 6;
+  }
+  #pagination button {
+    display: block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 0;
+    width: 16px;
+    height: 16px;
+    background-color: #ffffff;
+    border-radius: 100%;
+    padding: 0;
+    margin: 30px 0;
+    cursor: pointer;
+    position: relative;
+    opacity: 0.2;
+    transition: opacity 0.2s ease-in-out;
+    outline: none;
+  }
+  #pagination button:hover {
+    opacity: 0.5;
+  }
+  #pagination button.active {
+    opacity: 1;
+  }
+  #pagination button.active:before {
+    width: 300%;
+    height: 300%;
+    opacity: 1;
+  }
+  #pagination button:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out, width 0.4s ease-in-out,
+      height 0.4s ease-in-out;
   }
 </style>

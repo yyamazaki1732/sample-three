@@ -1,3 +1,4 @@
+import { gsap } from "gsap/all";
 import * as THREE from "three";
 
 window.addEventListener("DOMContentLoaded", init);
@@ -23,27 +24,28 @@ function init() {
   // camera.position.z = 0;
   camera.lookAt(new THREE.Vector3(0, 0, 0));
 
-  const image = document.getElementById("picture").getAttribute("src");
-  const texture = new THREE.TextureLoader().load(image);
+  const image = document.getElementsByClassName("picture");
+  const imageAttribute = image[0].getAttribute("src");
+  const texture = new THREE.TextureLoader().load(imageAttribute);
+  const currentImage = new THREE.TextureLoader().load(
+    image[0].getAttribute("src")
+  );
+  const nextImage = new THREE.TextureLoader().load(
+    image[1].getAttribute("src")
+  );
   let targetPercent = 0;
+  let targetDispFactor = 0;
 
   // uniform変数を定義
   const uniforms = {
-    uTime: {
-      value: 0.0,
-    },
-    uMouse: {
-      value: new THREE.Vector2(0.5, 0.5),
-    },
-    uFixAspect: {
-      value: height / width, // 逆アスペクト
-    },
-    uTex: {
-      value: texture, // テクスチャ
-    },
-    uPercent: {
-      value: targetPercent,
-    },
+    uTime: { value: 0.0 },
+    uMouse: { value: new THREE.Vector2(0.5, 0.5) },
+    uFixAspect: { value: height / width }, // 逆アスペクト
+    uTex: { value: texture }, // テクスチャ
+    uPercent: { value: targetPercent },
+    currentImage: { value: currentImage },
+    nextImage: { value: nextImage },
+    dispFactor: { value: targetDispFactor },
   };
 
   //vertexShader
@@ -61,17 +63,39 @@ function init() {
 	}
 `;
 
-  //vertexShader
+  //fragmentShader
   let fragment = `
   varying vec2 vUv;
 
   uniform float uTime;
   uniform float uPercent;
   uniform sampler2D uTex;
-  
+
+  //test
+  uniform sampler2D currentImage;
+  uniform sampler2D nextImage;
+  uniform float dispFactor;
+  //test end
+
   void main() {
     vec2 uv = vUv;
-  
+
+    //test start
+    vec4 _currentImage;
+    vec4 _nextImage;
+    float intensity = 0.1;
+
+    vec4 orig1 = texture2D(currentImage, uv);
+    vec4 orig2 = texture2D(nextImage, uv);
+
+    _currentImage = texture2D(currentImage, vec2(uv.x, uv.y + dispFactor * (orig1 * intensity) ));
+    _nextImage = texture2D(nextImage, vec2(uv.x, uv.y + (1.0 - dispFactor) * (orig2 * intensity)));
+
+    vec4 finalTexture = mix(_currentImage, _nextImage, dispFactor);
+
+    //test end
+
+
     float t = uTime * 6.;
     float amount = uPercent * 0.02;
   
@@ -79,7 +103,8 @@ function init() {
   
     vec3 color = texture2D( uTex, uv + uvOffset ).rgb;
   
-    gl_FragColor = vec4( color, 1.0 );
+    // gl_FragColor = vec4( color, 1.0 );
+    gl_FragColor = finalTexture;
   }
 `;
 
@@ -98,18 +123,29 @@ function init() {
   //mouse press & release
   const mousePressed = (x, y) => {
     targetPercent = 1.0; // マウスを押したら進捗度の目標値を 1.0 に
+    targetDispFactor = 1.0;
   };
   const mouseReleased = (x, y) => {
     targetPercent = 0.0; // マウスを離したら進捗度の目標値を 0.0 に
+    targetDispFactor = 0.0;
   };
 
-  window.addEventListener("mousedown", mousePressed);
-  window.addEventListener("mouseup", mouseReleased);
+  let flag = 0;
+  setInterval(() => {
+    flag += 1;
+    flag % 2 === 0 ? mousePressed() : mouseReleased();
+  }, 2000);
 
-  tick();
+  const easingFactor = 0.05;
+  let currentDispFactor = 0.0;
 
   // 毎フレーム時に実行されるループイベントです
   function tick() {
+    // イージングによる目標値への近づき具合を計算
+    let diff = targetDispFactor - currentDispFactor;
+    let delta = diff * easingFactor;
+    currentDispFactor += delta;
+
     // レンダリング
     renderer.render(scene, camera);
 
@@ -117,7 +153,9 @@ function init() {
 
     uniforms.uTime.value = sec; // シェーダーに渡す時間を更新
     uniforms.uPercent.value = targetPercent;
+    uniforms.dispFactor.value = currentDispFactor;
 
     requestAnimationFrame(tick);
   }
+  tick();
 }

@@ -4,12 +4,17 @@ import Layout from '../../layouts/Layout.astro';
 
 <Layout title="Welcome to Astro.">
 
-
+<style>
+	img {
+		display: none
+	}
+</style>
 	
 	<main>
 
 		<canvas id="myCanvas"></canvas>
-		<img src="/public/whale.jpg" alt="" id="picture">
+		<img class="whale picture" src="/public/whale.jpg" alt="">
+		<img class="dolphin picture" src="/public/dolphin.jpg" alt="">
 	</main>
 	<!-- ===============================================
 	# vertex
