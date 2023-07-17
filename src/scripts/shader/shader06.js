@@ -83,13 +83,19 @@ function init() {
     //test start
     vec4 _currentImage;
     vec4 _nextImage;
-    float intensity = 0.1;
+    float intensity = .05;
 
     vec4 orig1 = texture2D(currentImage, uv);
     vec4 orig2 = texture2D(nextImage, uv);
+    
+    float dispHor1 = dispFactor * (orig1.g * intensity);
+    float dispVer1 = dispFactor * (orig1.g * intensity) ;
 
-    _currentImage = texture2D(currentImage, vec2(uv.x, uv.y + dispFactor * (orig1 * intensity) ));
-    _nextImage = texture2D(nextImage, vec2(uv.x, uv.y + (1.0 - dispFactor) * (orig2 * intensity)));
+    float dispHor2 =  (1.0 - dispFactor) * (orig2.g * intensity);
+    float dispVer2 =  (1.0 - dispFactor) * (orig2.g * intensity);
+
+    _currentImage = texture2D(currentImage, vec2(uv.x + dispHor1, uv.y ));
+    _nextImage =    texture2D(nextImage,    vec2(uv.x + dispHor2, uv.y  ));
 
     vec4 finalTexture = mix(_currentImage, _nextImage, dispFactor);
 
@@ -130,6 +136,7 @@ function init() {
     targetDispFactor = 0.0;
   };
 
+  mousePressed();
   let flag = 0;
   setInterval(() => {
     flag += 1;
