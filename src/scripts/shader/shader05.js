@@ -10,6 +10,7 @@ function init() {
   // レンダラーを作成
   const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector("#myCanvas"),
+    alpha: 0,
   });
   renderer.setSize(width, height);
 
