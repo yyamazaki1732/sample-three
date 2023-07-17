@@ -29,7 +29,9 @@ import Layout from "../layouts/Layout.astro";
         <li><a href="./shader/shader02">shader02</a></li>
         <li><a href="./shader/shader03">shader03</a></li>
         <li><a href="./shader/shader04">shader04</a></li>
-        <li><a href="./shader/shader05">shader05</a></li>
+        <li>
+          <a href="./shader/shader05">shader05</a> 画像の切り替え
+        </li>
         <li><a href="./shader/shader-test">shader-test</a></li>
         <li><a href="./shader/shader-sample">shader-sample</a></li>
         <li><a href="./shader/shader-try">shader-try</a></li>
@@ -66,8 +68,15 @@ import Layout from "../layouts/Layout.astro";
   }
   .wrapper {
     display: grid;
-    grid-template: max-content/repeat(2, max-content);
+    grid-template: max-content/repeat(3, max-content);
     justify-content: center;
     margin-top: 64px;
+    gap: 24px;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  ul {
+    padding-left: 0;
   }
 </style>
