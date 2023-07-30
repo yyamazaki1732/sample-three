@@ -24,20 +24,20 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   camera.position.z = 5;
 
-  var randomisePosition = new THREE.Vector2(1, 2);
+  let randomisePosition = new THREE.Vector2(1, 2);
 
-  var R = function (x, y, t) {
+  let R = function (x, y, t) {
     return Math.floor(192 + 64 * Math.cos((x * x - y * y) / 300 + t));
   };
 
-  var G = function (x, y, t) {
+  let G = function (x, y, t) {
     return Math.floor(
       192 +
         64 * Math.sin((x * x * Math.cos(t / 4) + y * y * Math.sin(t / 3)) / 300)
     );
   };
 
-  var B = function (x, y, t) {
+  let B = function (x, y, t) {
     return Math.floor(
       192 +
         64 *
@@ -51,10 +51,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
   let geometry = new THREE.PlaneGeometry(window.innerWidth / 2, 400, 100, 100);
   let material = new THREE.ShaderMaterial({
     uniforms: {
-      u_bg: { type: "v3", value: rgb(162, 138, 241) },
-      u_bgMain: { type: "v3", value: rgb(162, 138, 241) },
-      u_color1: { type: "v3", value: rgb(162, 138, 241) },
-      u_color2: { type: "v3", value: rgb(82, 31, 241) },
+      // u_bg: { type: "v3", value: rgb(162, 138, 241) },
+      // u_bgMain: { type: "v3", value: rgb(162, 138, 241) },
+      // u_color1: { type: "v3", value: rgb(162, 138, 241) },
+      // u_color2: { type: "v3", value: rgb(82, 31, 241) },
+      u_bg: { type: "v3", value: rgb(42, 42, 42, 1) },
+      u_bgMain: { type: "v3", value: rgb(30, 30, 30, 1) },
+      u_color1: { type: "v3", value: rgb(7, 7, 7, 1) },
+      u_color2: { type: "v3", value: rgb(40, 40, 40, 1) },
       u_time: { type: "f", value: 30 },
       u_randomisePosition: { type: "v2", value: randomisePosition },
     },
