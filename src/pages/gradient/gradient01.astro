@@ -56,7 +56,7 @@ import Layout from "../../layouts/Layout.astro";
                 xDistortion = snoise(vUv.yy * 1. - u_randomisePosition * 0.05);
                 vec3 pos = position;
                 pos.z += (vDistortion * 1.);
-                pos.x += (xDistortion * 25.);
+                pos.x += (xDistortion * 40.);
     
                 gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
             }
