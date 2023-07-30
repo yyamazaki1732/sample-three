@@ -31,21 +31,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
   };
 
   let G = function (x, y, t) {
-    return Math.floor(
-      192 +
-        64 * Math.sin((x * x * Math.cos(t / 4) + y * y * Math.sin(t / 3)) / 300)
-    );
+    return R(x, y, t);
   };
 
   let B = function (x, y, t) {
-    return Math.floor(
-      192 +
-        64 *
-          Math.sin(
-            5 * Math.sin(t / 9) +
-              ((x - 100) * (x - 100) + (y - 100) * (y - 100)) / 1100
-          )
-    );
+    return R(x, y, t);
   };
   let sNoise = document.querySelector("#snoise-function").textContent;
   let geometry = new THREE.PlaneGeometry(window.innerWidth / 2, 400, 100, 100);
