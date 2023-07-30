@@ -11,8 +11,8 @@ function rgb(r, g, b) {
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+  const width = window.innerWidth * 2;
+  const height = window.innerHeight * 2;
   const renderer = new THREE.WebGLRenderer({
     alpha: true,
   });
@@ -53,7 +53,7 @@ function init() {
       // u_bgMain: { type: "v3", value: rgb(162, 138, 241) },
       // u_color1: { type: "v3", value: rgb(162, 138, 241) },
       // u_color2: { type: "v3", value: rgb(82, 31, 241) },
-      u_bg: { type: "v3", value: rgb(42, 42, 42, 0.1) },
+      u_bg: { type: "v3", value: rgb(0, 0, 0, 1) },
       u_bgMain: { type: "v3", value: rgb(7, 7, 7, 0.1) },
       u_color1: { type: "v3", value: rgb(7, 7, 7, 1) },
       u_color2: { type: "v3", value: rgb(0, 0, 0, 0.1) },
@@ -67,7 +67,7 @@ function init() {
 
   let mesh = new THREE.Mesh(geometry, material);
   mesh.position.set(-100, 270, -480);
-  mesh.scale.multiplyScalar(4);
+  mesh.scale.multiplyScalar(2);
   mesh.rotationX = -1.0;
   mesh.rotationY = 0.0;
   mesh.rotationZ = 0.1;
