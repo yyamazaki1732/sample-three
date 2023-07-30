@@ -1,0 +1,46 @@
+.test {
+  color: red;
+  font-size: 64px;
+}
+
+.music-button {
+  width: 100px;
+  height: 100px;
+  background-color: grey;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.music-button__figure {
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // translate: -50% -50%;
+  background-color: rebeccapurple;
+}
+
+.music-button__frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0.25rem solid #fff;
+  border-radius: 50%;
+  -webkit-mask-image: linear-gradient(180deg, #000 0, transparent 40%);
+  mask-image: linear-gradient(180deg, #000 0, transparent 40%);
+  -webkit-animation: spin 3s linear infinite normal forwards;
+  animation: spin 3s linear infinite normal forwards;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

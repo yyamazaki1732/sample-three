@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import "../../styles/count-down.scss"
 ---
 <style is:global>
  canvas {
@@ -8,10 +9,7 @@ import Layout from "../../layouts/Layout.astro";
    left: 0;
    z-index: -1;
 }
-.test {
-  color: red;
-  font-size: 64px;
-}
+
 
 .link-to-article a {
   background: rgba(0,0,0,0.8);
@@ -32,7 +30,22 @@ import Layout from "../../layouts/Layout.astro";
 
 <Layout title="Welcome to Astro.">
   <main id="main">
-    <p class="test">TEST</p>
+    
+    <div class="test" id="countdownArea" class="countdown">
+      <span id="countdown-day"></span>days
+      <span id="countdown-hour"></span>:
+      <span id="countdown-min"></span>:
+      <span id="countdown-sec"></span>
+  </div>
+
+  <audio id="audio" src="../../../public/YYHAW23_water_MST.mp3"></audio>
+
+<button class="music-button" id="click-handle"><span class="music-button__frame"></span>
+  <span class="music-button__figure">再生</span>
+</button>
+
+
+
     <div class="link-to-article">
       <a href="https://fjolt.com/article/3d-web-gl-javascript-gradient-effect" target="_blank">Article on How to Create a 3D Javascript Animated Gradient</a>
     </div>
@@ -139,3 +152,4 @@ import Layout from "../../layouts/Layout.astro";
 </Layout>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.154.0/three.min.js" integrity="sha512-WafpPDLG+DwH6lDCsUrzvXU6/TAEFoUmK5udCmfzEoYyK28uXLF5DWk3yLOQ1PqLo9cxH/Ys/Jex6q1jHu+EDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../../scripts/gradient/gradient01.js"></script>
+<script src="../../scripts/others/countdown.js"></script>
