@@ -5,14 +5,15 @@
 
 const setAnimation = () => {
   const NOW = new Date(); //今の日時
-  const TARGET = new Date("2023", "08", "01", "00", "00"); //ターゲット日時を取得
+  //   const TARGET = new Date("2023", "08", "01", "00", "00"); //ターゲット日時を取得
+  const TARGET = new Date("2023-09-01T00:00+04:00");
   let remainTime = TARGET - NOW; //差分を取る（ミリ秒で返ってくる）
 
   //指定の日時を過ぎていたら処理をしない
   if (remainTime < 0) return false;
 
   // 残り時間の単位とそれに対応するDOMのIDを配列で持つ
-  const timeUnits = [
+  const TIME_UNIT = [
     { unit: 24 * 60 * 60 * 1000, id: "countdown-day" }, // 日
     { unit: 60 * 60 * 1000, id: "countdown-hour" }, // 時
     { unit: 60 * 1000, id: "countdown-min" }, // 分
@@ -20,7 +21,7 @@ const setAnimation = () => {
   ];
 
   // 各単位ごとに処理を行う
-  timeUnits.forEach((timeUnit) => {
+  TIME_UNIT.forEach((timeUnit) => {
     const time = Math.floor(remainTime / timeUnit.unit);
     remainTime %= timeUnit.unit; // 余りを次の計算に使用
 
