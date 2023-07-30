@@ -7,18 +7,21 @@ function randomInteger(min, max) {
 function rgb(r, g, b) {
   return new THREE.Vector3(r, g, b);
 }
-document.addEventListener("DOMContentLoaded", function (e) {
-  const renderer = new THREE.WebGLRenderer();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
 
+window.addEventListener("DOMContentLoaded", init);
+
+function init() {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const renderer = new THREE.WebGLRenderer({
+    alpha: true,
+  });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.getElementById("main").appendChild(renderer.domElement);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(width, height);
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000
-  );
+  const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
 
   let vCheck = false;
 
@@ -64,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   let mesh = new THREE.Mesh(geometry, material);
   mesh.position.set(-100, 270, -480);
-  mesh.scale.multiplyScalar(2);
+  mesh.scale.multiplyScalar(4);
   mesh.rotationX = -1.0;
   mesh.rotationY = 0.0;
   mesh.rotationZ = 0.1;
@@ -106,4 +109,24 @@ document.addEventListener("DOMContentLoaded", function (e) {
     t = t + 0.02;
   };
   animate();
-});
+
+  // リサイズイベント発生時に実行
+  window.addEventListener("resize", onResize);
+
+  function onResize() {
+    // サイズを取得
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // レンダラーのサイズを調整する
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(width, height);
+
+    // カメラのアスペクト比を正す
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+  }
+
+  // 初期化のために実行
+  onResize();
+}

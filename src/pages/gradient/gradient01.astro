@@ -1,9 +1,38 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 ---
+<style is:global>
+ canvas {
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: -1;
+}
+.test {
+  color: red;
+  font-size: 64px;
+}
+
+.link-to-article a {
+  background: rgba(0,0,0,0.8);
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  border-radius: 100px;
+  z-index: 9999;
+  padding: 0.75rem 1.25rem;
+  color: rgba(255,255,255,0.5);
+  font-size: 1.25rem;
+  text-decoration: none;
+}
+.link-to-article a:hover {
+  color: white; 
+}
+</style>
 
 <Layout title="Welcome to Astro.">
-  <main>
+  <main id="main">
+    <p class="test">TEST</p>
     <div class="link-to-article">
       <a href="https://fjolt.com/article/3d-web-gl-javascript-gradient-effect" target="_blank">Article on How to Create a 3D Javascript Animated Gradient</a>
     </div>
@@ -107,28 +136,3 @@ import Layout from "../../layouts/Layout.astro";
 </Layout>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.154.0/three.min.js" integrity="sha512-WafpPDLG+DwH6lDCsUrzvXU6/TAEFoUmK5udCmfzEoYyK28uXLF5DWk3yLOQ1PqLo9cxH/Ys/Jex6q1jHu+EDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../../scripts/gradient/gradient01.js"></script>
-<style>
-  #canvas, canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.link-to-article a {
-  background: rgba(0,0,0,0.8);
-  position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-  border-radius: 100px;
-  z-index: 9999;
-  padding: 0.75rem 1.25rem;
-  color: rgba(255,255,255,0.5);
-  font-size: 1.25rem;
-  text-decoration: none;
-}
-.link-to-article a:hover {
-  color: white; 
-}
-</style>
