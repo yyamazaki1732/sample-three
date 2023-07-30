@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   let mesh = new THREE.Mesh(geometry, material);
   mesh.position.set(-200, 270, -280);
-  mesh.scale.multiplyScalar(1);
+  mesh.scale.multiplyScalar(9);
   mesh.rotationX = -1.0;
   mesh.rotationY = 0.0;
   mesh.rotationZ = 0.1;
@@ -97,8 +97,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
     }
 
     // Increase t by a certain value every frame
-    j = j + 0.01;
-    t = t + 0.05;
+    j = j + 0.02;
+    t = t + 0.02;
   };
   animate();
 });
