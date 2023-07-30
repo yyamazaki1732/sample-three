@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   let randomisePosition = new THREE.Vector2(1, 2);
 
   let R = function (x, y, t) {
-    return Math.floor(192 + 64 * Math.cos((x * x - y * y) / 300 + t));
+    return Math.floor(192 + 64 * Math.cos((x * x - y * y) / 30000 + t));
   };
 
   let G = function (x, y, t) {
@@ -38,17 +38,22 @@ document.addEventListener("DOMContentLoaded", function (e) {
     return R(x, y, t);
   };
   let sNoise = document.querySelector("#snoise-function").textContent;
-  let geometry = new THREE.PlaneGeometry(window.innerWidth / 2, 400, 100, 100);
+  let geometry = new THREE.PlaneGeometry(
+    window.innerWidth,
+    window.innerHeight,
+    1000,
+    1000
+  );
   let material = new THREE.ShaderMaterial({
     uniforms: {
       // u_bg: { type: "v3", value: rgb(162, 138, 241) },
       // u_bgMain: { type: "v3", value: rgb(162, 138, 241) },
       // u_color1: { type: "v3", value: rgb(162, 138, 241) },
       // u_color2: { type: "v3", value: rgb(82, 31, 241) },
-      u_bg: { type: "v3", value: rgb(42, 42, 42, 1) },
-      u_bgMain: { type: "v3", value: rgb(30, 30, 30, 1) },
+      u_bg: { type: "v3", value: rgb(42, 42, 42, 0.1) },
+      u_bgMain: { type: "v3", value: rgb(7, 7, 7, 0.1) },
       u_color1: { type: "v3", value: rgb(7, 7, 7, 1) },
-      u_color2: { type: "v3", value: rgb(40, 40, 40, 1) },
+      u_color2: { type: "v3", value: rgb(0, 0, 0, 0.1) },
       u_time: { type: "f", value: 30 },
       u_randomisePosition: { type: "v2", value: randomisePosition },
     },
@@ -58,8 +63,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
   });
 
   let mesh = new THREE.Mesh(geometry, material);
-  mesh.position.set(-200, 270, -280);
-  mesh.scale.multiplyScalar(9);
+  mesh.position.set(-100, 270, -480);
+  mesh.scale.multiplyScalar(2);
   mesh.rotationX = -1.0;
   mesh.rotationY = 0.0;
   mesh.rotationZ = 0.1;
