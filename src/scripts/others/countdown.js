@@ -1,13 +1,10 @@
-// var date = new Date();
-// console.log(date.toLocaleString());
-// console.log(date.toLocaleString("en-US", { timeZone: "America/New_York" }));
-// console.log(date.toLocaleString("en-GB", { timeZone: "Europe/London" }));
-
 const setAnimation = () => {
-  const NOW = new Date(); //今の日時
-  //   const TARGET = new Date("2023", "08", "01", "00", "00"); //ターゲット日時を取得
+  const NOW = new Date();
+
+  NOW.setTime(NOW.getTime() + 4 * 60 * 60 * 1000);
+  const BTM_TIME = new Date(NOW.toGMTString());
   const TARGET = new Date("2023-09-01T00:00+04:00");
-  let remainTime = TARGET - NOW; //差分を取る（ミリ秒で返ってくる）
+  let remainTime = TARGET - BTM_TIME; //差分を取る（ミリ秒で返ってくる）
 
   //指定の日時を過ぎていたら処理をしない
   if (remainTime < 0) return false;
