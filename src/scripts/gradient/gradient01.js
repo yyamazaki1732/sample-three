@@ -30,9 +30,8 @@ function init() {
   let randomisePosition = new THREE.Vector2(1, 2);
 
   let R = function (x, y, t) {
-    return Math.floor(192 + 64 * Math.cos((x * x - y * y) / 30000 + t));
+    return Math.floor(100 + 14 * Math.cos((x * x * x - y * y * 2) / 30000 + t));
   };
-
   let G = function (x, y, t) {
     return R(x, y, t);
   };
@@ -40,6 +39,23 @@ function init() {
   let B = function (x, y, t) {
     return R(x, y, t);
   };
+  // var G = function (x, y, t) {
+  //   return Math.floor(
+  //     80 +
+  //       64 * Math.sin((x * x * Math.cos(t / 4) + y * y * Math.sin(t / 3)) / 300)
+  //   );
+  // };
+
+  // var B = function (x, y, t) {
+  //   return Math.floor(
+  //     80 +
+  //       64 *
+  //         Math.sin(
+  //           5 * Math.sin(t / 9) +
+  //             ((x - 100) * (x - 100) + (y - 100) * (y - 100)) / 1100
+  //         )
+  //   );
+  // };
   let sNoise = document.querySelector("#snoise-function").textContent;
   let geometry = new THREE.PlaneGeometry(
     window.innerWidth,
@@ -47,16 +63,23 @@ function init() {
     1000,
     1000
   );
+
   let material = new THREE.ShaderMaterial({
     uniforms: {
       // u_bg: { type: "v3", value: rgb(162, 138, 241) },
       // u_bgMain: { type: "v3", value: rgb(162, 138, 241) },
       // u_color1: { type: "v3", value: rgb(162, 138, 241) },
       // u_color2: { type: "v3", value: rgb(82, 31, 241) },
+      //
+      // u_bg: { type: "v3", value: rgb(0, 0, 0, 1) },
+      // u_bgMain: { type: "v3", value: rgb(7, 7, 7, 0.1) },
+      // u_color1: { type: "v3", value: rgb(7, 7, 7, 1) },
+      // u_color2: { type: "v3", value: rgb(0, 0, 0, 0.1) },
+      //
       u_bg: { type: "v3", value: rgb(0, 0, 0, 1) },
-      u_bgMain: { type: "v3", value: rgb(7, 7, 7, 0.1) },
-      u_color1: { type: "v3", value: rgb(7, 7, 7, 1) },
-      u_color2: { type: "v3", value: rgb(0, 0, 0, 0.1) },
+      u_bgMain: { type: "v3", value: rgb(0, 0, 0, 1) },
+      u_color1: { type: "v3", value: rgb(0, 0, 0, 1) },
+      u_color2: { type: "v3", value: rgb(0, 0, 0, 1) },
       u_time: { type: "f", value: 30 },
       u_randomisePosition: { type: "v2", value: randomisePosition },
     },
@@ -67,7 +90,7 @@ function init() {
 
   let mesh = new THREE.Mesh(geometry, material);
   mesh.position.set(-100, 270, -480);
-  mesh.scale.multiplyScalar(2);
+  mesh.scale.multiplyScalar(1);
   mesh.rotationX = -1.0;
   mesh.rotationY = 0.0;
   mesh.rotationZ = 0.1;
