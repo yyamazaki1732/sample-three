@@ -15,6 +15,8 @@ body::after {
     opacity: .05;
     z-index: 100000;
     pointer-events: none;
+    background-color: rgba(48,48,48,1);
+    background-size: 12%;
   /* position: fixed;
     left: 0;
     top: 0;
@@ -124,13 +126,13 @@ body::after {
     
             void main() {
                 vUv = uv;
-                vDistortion = snoise(vUv.xy * 3. - u_randomisePosition * 0.25);
-                xDistortion = snoise(vUv.yy * 4. - u_randomisePosition * 0.05);
-                yDistortion = snoise(vUv.yy * 4. - u_randomisePosition * 0.05);
+                vDistortion = snoise(vUv.xy * 5. - u_randomisePosition * 0.25);
+                xDistortion = snoise(vUv.xx * 2. - u_randomisePosition * 0.05);
+                yDistortion = snoise(vUv.yy * 2. - u_randomisePosition * 0.05);
                 vec3 pos = position;
-                pos.z += (vDistortion * 50.);
-                pos.y += (yDistortion * 10.);
-                pos.x += (xDistortion * 40.);
+                pos.z += (vDistortion * 40.);
+                pos.y += (yDistortion * 4.);
+                pos.x += (xDistortion * 4.);
     
                 gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
             }
@@ -161,7 +163,7 @@ body::after {
                 vec3 c2 = rgb(u_color2.r, u_color2.g, u_color2.b);
                 vec3 bgMain = rgb(u_bgMain.r, u_bgMain.g, u_bgMain.b);
     
-                float noise1 = snoise(vUv + u_time * 0.08);
+                float noise1 = snoise(vUv * 2.  + u_time * 0.08);
                 float noise2 = snoise(vUv * 2. + u_time * 0.1);
     
                 vec3 color = bg;

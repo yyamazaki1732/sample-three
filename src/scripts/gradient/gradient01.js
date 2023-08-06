@@ -11,13 +11,18 @@ function rgb(r, g, b) {
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
-  const width = window.innerWidth * 2;
-  const height = window.innerHeight * 2;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
   const renderer = new THREE.WebGLRenderer({
     alpha: true,
   });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.getElementById("main").appendChild(renderer.domElement);
+  renderer.setSize(width, height);
+  // document.getElementsByTagName("body")[0].appendChild(renderer.domElement);
+
+  var insertedElement = document
+    .getElementsByTagName("body")[0]
+    .insertBefore(renderer.domElement, document.getElementById("main"));
+
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(width, height);
   const scene = new THREE.Scene();
@@ -25,12 +30,12 @@ function init() {
 
   let vCheck = false;
 
-  camera.position.z = 5;
+  camera.position.z = 4;
 
   let randomisePosition = new THREE.Vector2(1, 2);
 
   let R = function (x, y, t) {
-    return Math.floor(100 + 14 * Math.cos((x * x * x - y * y * 2) / 30000 + t));
+    return Math.floor(88 + 24 * Math.cos((x * x * x - y * y * 2) / 30000 + t));
   };
   let G = function (x, y, t) {
     return R(x, y, t);
@@ -57,12 +62,7 @@ function init() {
   //   );
   // };
   let sNoise = document.querySelector("#snoise-function").textContent;
-  let geometry = new THREE.PlaneGeometry(
-    window.innerWidth,
-    window.innerHeight,
-    1000,
-    1000
-  );
+  let geometry = new THREE.PlaneGeometry(width, height, 1000, 1000);
 
   let material = new THREE.ShaderMaterial({
     uniforms: {
@@ -89,8 +89,8 @@ function init() {
   });
 
   let mesh = new THREE.Mesh(geometry, material);
-  mesh.position.set(-100, 270, -480);
-  mesh.scale.multiplyScalar(1);
+  mesh.position.set(0, 0, -480);
+  mesh.scale.multiplyScalar(3);
   mesh.rotationX = -1.0;
   mesh.rotationY = 0.0;
   mesh.rotationZ = 0.1;
