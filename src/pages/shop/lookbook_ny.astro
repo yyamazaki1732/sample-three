@@ -1,0 +1,1533 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import "../../styles/lookbook_ny.scss";
+---
+
+<style>
+  /* destyle.css v2.0.2 | MIT License | https://github.com/nicolas-cusan/destyle.css */
+  /* Reset box-model and set borders */
+  /* ============================================ */
+  /* Document */
+  /* ============================================ */
+  /**
+* 1. Correct the line height in all browsers.
+* 2. Prevent adjustments of font size after orientation changes in iOS.
+* 3. Remove gray overlay on links for iOS.
+*/
+  html {
+    line-height: 1.15;
+    /* 1 */
+    -webkit-text-size-adjust: 100%;
+    /* 2 */
+    -webkit-tap-highlight-color: transparent;
+    /* 3*/
+  }
+
+  /* Sections */
+  /* ============================================ */
+  /**
+* Remove the margin in all browsers.
+*/
+  /**
+* Render the `main` element consistently in IE.
+*/
+  main {
+    display: block;
+  }
+
+  /* Vertical rhythm */
+  /* ============================================ */
+  p,
+  table,
+  blockquote,
+  address,
+  pre,
+  iframe,
+  form,
+  figure,
+  dl {
+    margin: 0;
+  }
+
+  /* Headings */
+  /* ============================================ */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+    margin: 0;
+  }
+
+  /* Lists (enumeration) */
+  /* ============================================ */
+  ul,
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Lists (definition) */
+  /* ============================================ */
+  dt {
+    font-weight: bold;
+  }
+
+  dd {
+    margin-left: 0;
+  }
+
+  /* Grouping content */
+  /* ============================================ */
+  /**
+* 1. Add the correct box sizing in Firefox.
+* 2. Show the overflow in Edge and IE.
+*/
+  hr {
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    /* 1 */
+    height: 0;
+    /* 1 */
+    overflow: visible;
+    /* 2 */
+    border-top-width: 1px;
+    margin: 0;
+    clear: both;
+    color: inherit;
+  }
+
+  /**
+* 1. Correct the inheritance and scaling of font size in all browsers.
+* 2. Correct the odd `em` font sizing in all browsers.
+*/
+  pre {
+    font-family: monospace, monospace;
+    /* 1 */
+    font-size: inherit;
+    /* 2 */
+  }
+
+  address {
+    font-style: inherit;
+  }
+
+  /* Text-level semantics */
+  /* ============================================ */
+  /**
+* Remove the gray background on active links in IE 10.
+*/
+  a {
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /**
+* 1. Remove the bottom border in Chrome 57-
+* 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+*/
+  abbr[title] {
+    text-decoration: underline;
+    /* 2 */
+    -webkit-text-decoration: underline dotted;
+    text-decoration: underline dotted;
+    /* 2 */
+  }
+
+  /**
+* Add the correct font weight in Chrome, Edge, and Safari.
+*/
+  b,
+  strong {
+    font-weight: bolder;
+  }
+
+  /**
+* 1. Correct the inheritance and scaling of font size in all browsers.
+* 2. Correct the odd `em` font sizing in all browsers.
+*/
+  code,
+  kbd,
+  samp {
+    font-family: monospace, monospace;
+    /* 1 */
+    font-size: inherit;
+    /* 2 */
+  }
+
+  /**
+* Add the correct font size in all browsers.
+*/
+  small {
+    font-size: 80%;
+  }
+
+  /**
+* Prevent `sub` and `sup` elements from affecting the line height in
+* all browsers.
+*/
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  sub {
+    bottom: -0.25em;
+  }
+
+  sup {
+    top: -0.5em;
+  }
+
+  /* Embedded content */
+  /* ============================================ */
+  /**
+* Prevent vertical alignment issues.
+*/
+  img,
+  embed,
+  object,
+  iframe {
+    vertical-align: bottom;
+  }
+
+  /* Forms */
+  /* ============================================ */
+  /**
+* Reset form fields to make them styleable
+*/
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    vertical-align: middle;
+    color: inherit;
+    font: inherit;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    border-radius: 0;
+    text-align: inherit;
+  }
+
+  /**
+* Reset radio and checkbox appearance to preserve their look in iOS.
+*/
+  [type="checkbox"] {
+    -webkit-appearance: checkbox;
+    -moz-appearance: checkbox;
+    appearance: checkbox;
+  }
+
+  [type="radio"] {
+    -webkit-appearance: radio;
+    -moz-appearance: radio;
+    appearance: radio;
+  }
+
+  /**
+* Show the overflow in IE.
+* 1. Show the overflow in Edge.
+*/
+  button,
+  input {
+    /* 1 */
+    overflow: visible;
+  }
+
+  /**
+* Remove the inheritance of text transform in Edge, Firefox, and IE.
+* 1. Remove the inheritance of text transform in Firefox.
+*/
+  button,
+  select {
+    /* 1 */
+    text-transform: none;
+  }
+
+  /**
+* Correct the inability to style clickable types in iOS and Safari.
+*/
+  button,
+  [type="button"],
+  [type="reset"],
+  [type="submit"] {
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  button[disabled],
+  [type="button"][disabled],
+  [type="reset"][disabled],
+  [type="submit"][disabled] {
+    cursor: default;
+  }
+
+  /**
+* Remove the inner border and padding in Firefox.
+*/
+  button::-moz-focus-inner,
+  [type="button"]::-moz-focus-inner,
+  [type="reset"]::-moz-focus-inner,
+  [type="submit"]::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+  }
+
+  /**
+* Restore the focus styles unset by the previous rule.
+*/
+  button:-moz-focusring,
+  [type="button"]:-moz-focusring,
+  [type="reset"]:-moz-focusring,
+  [type="submit"]:-moz-focusring {
+    outline: 1px dotted ButtonText;
+  }
+
+  /**
+* Remove arrow in IE10 & IE11
+*/
+  select::-ms-expand {
+    display: none;
+  }
+
+  /**
+* Remove padding
+*/
+  option {
+    padding: 0;
+  }
+
+  /**
+* Reset to invisible
+*/
+  fieldset {
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+  }
+
+  /**
+* 1. Correct the text wrapping in Edge and IE.
+* 2. Correct the color inheritance from `fieldset` elements in IE.
+* 3. Remove the padding so developers are not caught out when they zero out
+*    `fieldset` elements in all browsers.
+*/
+  legend {
+    color: inherit;
+    /* 2 */
+    display: table;
+    /* 1 */
+    max-width: 100%;
+    /* 1 */
+    padding: 0;
+    /* 3 */
+    white-space: normal;
+    /* 1 */
+  }
+
+  /**
+* Add the correct vertical alignment in Chrome, Firefox, and Opera.
+*/
+  progress {
+    vertical-align: baseline;
+  }
+
+  /**
+* Remove the default vertical scrollbar in IE 10+.
+*/
+  textarea {
+    overflow: auto;
+  }
+
+  /**
+* Correct the cursor style of increment and decrement buttons in Chrome.
+*/
+  [type="number"]::-webkit-inner-spin-button,
+  [type="number"]::-webkit-outer-spin-button {
+    height: auto;
+  }
+
+  /**
+* 1. Correct the outline style in Safari.
+*/
+  [type="search"] {
+    outline-offset: -2px;
+    /* 1 */
+  }
+
+  /**
+* Remove the inner padding in Chrome and Safari on macOS.
+*/
+  [type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+
+  /**
+* 1. Correct the inability to style clickable types in iOS and Safari.
+* 2. Change font properties to `inherit` in Safari.
+*/
+  ::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    /* 1 */
+    font: inherit;
+    /* 2 */
+  }
+
+  /**
+* Clickable labels
+*/
+  label[for] {
+    cursor: pointer;
+  }
+
+  /* Interactive */
+  /* ============================================ */
+  /*
+* Add the correct display in Edge, IE 10+, and Firefox.
+*/
+  details {
+    display: block;
+  }
+
+  /*
+* Add the correct display in all browsers.
+*/
+  summary {
+    display: list-item;
+  }
+
+  /*
+* Remove outline for editable content.
+*/
+  [contenteditable] {
+    outline: none;
+  }
+
+  /* Table */
+  /* ============================================ */
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  caption {
+    text-align: left;
+  }
+
+  td,
+  th {
+    vertical-align: top;
+    padding: 0;
+  }
+
+  th {
+    text-align: left;
+    font-weight: bold;
+  }
+
+  /* Misc */
+  /* ============================================ */
+  /**
+* Add the correct display in IE 10+.
+*/
+  template {
+    display: none;
+  }
+
+  /**
+* Add the correct display in IE 10.
+*/
+  [hidden] {
+    display: none;
+  }
+
+  a:link {
+    color: #3b3c3c;
+    text-decoration: none;
+    -webkit-transition: opacity 300ms ease;
+    transition: opacity 300ms ease;
+  }
+
+  a:visited {
+    color: #3b3c3c;
+    text-decoration: none;
+  }
+  /* 
+  body {
+    margin: 0;
+    color: #555;
+    text-align: center;
+ font-family: "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W6", "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    font-family: "Roboto", "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3",
+      "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "Droid Sans", sans-serif;
+    font-size: 12px;
+    line-height: 140%;
+    background: #fff;
+    min-width: 960px;
+  }
+*/
+  /* _pageloading */
+  #pageloading {
+    z-index: 9999;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+  }
+
+  #pageloading .pageloading_logo {
+    display: none;
+    animation: b 2s ease 0s 1 normal;
+    -webkit-animation: b 2s ease 0s 1 normal;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -100%);
+    transform: translate(-50%, -100%);
+    width: 100%;
+    height: 100%;
+  }
+
+  #pageloading .pageloading_logo span {
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 55%;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 30% !important;
+    background-image: url("/img/usr/loading_text/img_message2211.png");
+  }
+
+  #pageloading .pageloading_copy {
+    display: none;
+    animation: c 2s ease 0s 1 normal;
+    -webkit-animation: c 2s ease 0s 1 normal;
+    position: absolute;
+    left: 50%;
+    bottom: 80px;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 12.85714%;
+  }
+
+  @-webkit-keyframes b {
+    0% {
+      top: 55%;
+      opacity: 0;
+    }
+
+    to {
+      top: 50%;
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes c {
+    0% {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes b {
+    0% {
+      top: 55%;
+      opacity: 0;
+    }
+
+    to {
+      top: 50%;
+      opacity: 1;
+    }
+  }
+
+  @keyframes b {
+    0% {
+      top: 55%;
+      opacity: 0;
+    }
+
+    to {
+      top: 50%;
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes c {
+    0% {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes c {
+    0% {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .wrapper_ {
+    width: 100%;
+    min-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    padding-top: 110px;
+    left: 0;
+    -webkit-transition: left 300ms 0s ease;
+    transition: left 300ms 0s ease;
+  }
+
+  .wrapper_.opened {
+    position: fixed;
+    left: 414px;
+  }
+
+  #header {
+    width: 100%;
+    height: 111px;
+    zoom: 1;
+    text-align: center;
+    position: fixed;
+    z-index: 2;
+    background: #fff;
+    left: 0;
+    top: 0;
+    -webkit-transition: left 300ms 0s ease;
+    transition: left 300ms 0s ease;
+  }
+
+  #header #header_entry {
+    float: left;
+    font-size: 11px;
+    width: auto;
+  }
+
+  #header #header_entry a {
+    display: block;
+    height: 32px;
+    line-height: 32px;
+  }
+
+  #header #header_search_box {
+    float: right;
+    width: auto;
+  }
+
+  #header .header_inner_ {
+    min-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    height: 78px;
+    padding: 0;
+  }
+
+  #header .header_inner_ .header_menu_btn_wrap_ {
+    position: absolute;
+    left: 40px;
+    top: 31px;
+  }
+
+  #header .header_inner_ #header_menu_btn {
+    position: relative;
+    font-size: 11px;
+    background: transparent;
+    border: none;
+    z-index: 1;
+    cursor: pointer;
+    padding-left: 38px;
+    outline: none;
+  }
+
+  #header .header_inner_ #header_menu_btn:active,
+  #header .header_inner_ #header_menu_btn:focus,
+  #header .header_inner_ #header_menu_btn:active > p,
+  #header .header_inner_ #header_menu_btn:focus > p {
+    position: relative;
+  }
+
+  #header .header_inner_ #header_menu_btn span {
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    left: 0;
+    background: #3c3c3c;
+  }
+
+  #header .header_inner_ #header_menu_btn span:nth-child(1) {
+    top: 0;
+  }
+
+  #header .header_inner_ #header_menu_btn span:nth-child(2) {
+    top: 6px;
+  }
+
+  #header .header_inner_ #header_menu_btn span:nth-child(3) {
+    top: 12px;
+  }
+
+  #header .header_inner_ #sitelogo {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 19px;
+    margin: 0 auto;
+    float: none;
+    width: auto;
+    height: auto;
+  }
+
+  #header ul.customer_menu_ {
+    position: absolute;
+    right: 40px;
+    top: 18px;
+    margin: auto 0;
+  }
+
+  #header ul.customer_menu_ li {
+    margin: 0 0 0 10px;
+    float: left;
+    margin-left: 25px;
+    font-size: 11px;
+  }
+
+  #header ul.customer_menu_ li a {
+    display: inline-block;
+  }
+
+  #header ul.customer_menu_ li#menu_wish a {
+    padding-left: 24px;
+    background: url("/img/usr/common/ico_heart.png") left center no-repeat;
+  }
+
+  #header ul.customer_menu_ li#menu_cart a {
+    padding-left: 24px;
+    background: url("/img/usr/common/ico_cart.png") left center no-repeat;
+  }
+
+  #header #headernav {
+    width: 100%;
+    height: 33px;
+    min-width: 1100px;
+    background: #fff;
+    border-bottom: 1px solid #e4e4e4;
+    /*position: fixed;z-index: 2;top: 0;left: 0;*/
+    -webkit-transition: all 300ms 0s ease;
+    transition: all 300ms 0s ease;
+  }
+
+  #header.opened {
+    left: 414px;
+  }
+
+  #header #header_global_nav {
+    display: inline-block;
+    letter-spacing: -0.4em;
+    -webkit-transform: translateX(81px);
+    transform: translateX(81px);
+  }
+
+  #header #header_global_nav li {
+    display: inline-block;
+    letter-spacing: normal;
+  }
+
+  #header #header_global_nav li a {
+    display: inline-block;
+    font-size: 10px;
+    width: 120px;
+    height: 32px;
+    line-height: 32px;
+    border-left: 1px solid #e4e4e4;
+  }
+
+  #header #header_global_nav li:last-child a {
+    border-right: 1px solid #e4e4e4;
+  }
+
+  /* ----ユーザー定義　グローバルナビゲーション---- */
+  #headernav .header_dropdown_wrapper_ {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 33px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 1000px;
+    height: 278px;
+    background: #fff;
+    padding: 40px 102px 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: left;
+    letter-spacing: normal;
+  }
+
+  #headernav #header_men_content {
+    background: #fff url("/img/usr/nav/header_nav_men.jpg?v=20201210") 750px
+      center no-repeat;
+  }
+
+  #headernav #header_women_content {
+    background: #fff url("/img/usr/nav/header_nav_women.jpg?v=20201210") 750px
+      center no-repeat;
+  }
+
+  #headernav .header_dropdown_title_ {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  #headernav #header_dropdown_brand_list {
+    margin-top: 28px;
+    letter-spacing: -0.4em;
+  }
+
+  #headernav #header_dropdown_brand_list li {
+    display: inline-block;
+    letter-spacing: normal;
+  }
+
+  .header_dropdown_wrapper_#header_brand_content
+    #header_dropdown_brand_list
+    li {
+    margin-bottom: 20px;
+    vertical-align: top;
+    width: 180px;
+  }
+
+  #headernav #header_dropdown_brand_list li + li {
+    margin-left: 20px;
+  }
+
+  .header_dropdown_wrapper_#header_brand_content
+    #header_dropdown_brand_list
+    li:nth-child(4n + 1) {
+    margin-left: 0;
+  }
+
+  #headernav .brand_name_ {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  #headernav .header_dropdown_list {
+    margin-top: 45px;
+    letter-spacing: -0.4em;
+    width: 600px;
+  }
+
+  #headernav .header_dropdown_list li {
+    display: inline-block;
+    letter-spacing: normal;
+    width: 150px;
+    margin-bottom: 20px;
+  }
+
+  /* ----ユーザー定義　TOPページヘッダー 検索---- */
+  #header_search {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  #header_search .header_inner_ {
+    width: 960px;
+    height: 30px;
+    margin: 0 auto;
+    zoom: 1;
+  }
+
+  #header_search .header_inner_:after {
+    content: "";
+    display: block;
+    height: 0;
+    font-size: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  #header_search_box:after,
+  #header_search_keyward:after,
+  #header_search_keyword ul:after {
+    content: "";
+    display: block;
+    height: 0;
+    font-size: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  #header_search_box {
+    float: right;
+    zoom: 1;
+  }
+
+  #header_search_box input {
+    margin: 0;
+    padding: 0;
+    float: left;
+    color: #999;
+  }
+
+  #header_search_box input#keyword {
+    width: 130px;
+    padding: 11px 10px;
+    border: none;
+    font-size: 10px;
+    border-right: 1px solid #e4e4e4;
+    outline: none;
+    background: none;
+    border-radius: 0;
+    height: auto;
+    line-height: 1;
+  }
+
+  /* ----ユーザー定義　ビジュアル---- */
+  #header #header_global_nav li a {
+    display: inline-block;
+    font-size: 10px;
+    width: 120px;
+    height: 32px;
+    line-height: 32px;
+    border-left: 1px solid #e4e4e4;
+  }
+
+  #header .header_inner_ #sitelogo img {
+    width: 180px;
+  }
+
+  /* ----ユーザー定義　TOPページ---- */
+  /* slider*/
+  .slick-slide {
+    position: relative;
+  }
+
+  #header_search_box input[type="text"]#keyword {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 32px;
+    text-align: left;
+  }
+
+  #header .header_inner_ #sitelogo {
+    top: 19px;
+  }
+
+  #header .header_inner_ #sitelogo img {
+    width: 180px;
+  }
+
+  .wrapper_#toppage #header {
+    z-index: 2;
+  }
+
+  .wrapper_#toppage .container_ {
+    position: static;
+  }
+
+  .wrapper_#toppage .left_information_ .btn_more_ {
+    margin-bottom: 160px;
+  }
+
+  #header {
+    position: fixed;
+    z-index: 100;
+  }
+
+  #header:not(.opened) {
+    -webkit-transition: none;
+    transition: none;
+  }
+
+  #header .header_inner_ {
+    background: #fff;
+  }
+
+  .header_dropdown_wrapper_#header_brand_content {
+    height: auto;
+    padding-bottom: 20px;
+  }
+
+  .header_dropdown_wrapper_#header_brand_content
+    #header_dropdown_brand_list
+    li {
+    margin-bottom: 20px;
+    vertical-align: top;
+    width: 180px;
+  }
+
+  .header_dropdown_wrapper_#header_brand_content
+    #header_dropdown_brand_list
+    li:nth-child(4n + 1) {
+    margin-left: 0;
+  }
+
+  #header #header_global_nav {
+    -webkit-transform: translateX(81px);
+    transform: translateX(81px);
+  }
+
+  #search_suggest_area_ {
+    position: fixed;
+    left: auto !important;
+    top: 32px;
+    right: 32px !important;
+  }
+
+  #search_suggest_area_ {
+    position: absolute;
+    display: block;
+    z-index: 1000;
+    text-align: left;
+    background-color: #fff;
+    border: solid 1px #ccc;
+    padding: 5px;
+  }
+
+  .suggest_keyword_ {
+    padding: 2px;
+  }
+
+  .suggest_keyword_entry_ {
+    display: block;
+    color: #000;
+    text-decoration: none;
+  }
+
+  .suggest_goods_ {
+    width: 370px;
+    min-height: 60px;
+    padding: 2px;
+    display: block;
+    clear: both;
+  }
+
+  .suggest_goods_img_ {
+    display: inline-block;
+    float: left;
+    width: 60px;
+  }
+
+  .suggest_goods_img_ img {
+    width: 60px;
+    height: 80px;
+  }
+
+  .suggest_goods_name_,
+  .suggest_goods_comment_,
+  .suggest_goods_price_ {
+    display: inline-block;
+    float: left;
+    width: 300px;
+    margin-left: 10px;
+  }
+
+  .suggest_keyword_:hover,
+  .suggest_goods_:hover {
+    background-color: #dedede;
+    cursor: pointer;
+    cursor: hand;
+  }
+
+  /*210726_追加*/
+  .brand_img_ img {
+    width: 180px;
+  }
+
+  /* ----英語/フランス後切り替えボタン---- */
+  .header_langSet {
+    float: left;
+    font-size: 11px;
+    width: 64px;
+    border-right: 1px solid #e4e4e4;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .header_langSet span a {
+    display: block;
+    font-size: 10px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-left: 1px solid #e4e4e4;
+    cursor: pointer;
+  }
+
+  .header_langSet span a.is-active {
+    background: #3b3c3c;
+    color: #fff;
+  }
+
+  /* パンくずリスト */
+  div.breadcrumb_ {
+    text-align: center;
+    letter-spacing: -0.4em;
+    padding-top: 40px;
+  }
+
+  div.breadcrumb_ ul {
+    min-height: 16px;
+  }
+
+  div.breadcrumb_ ul li {
+    display: inline-block;
+    letter-spacing: normal;
+  }
+
+  div.breadcrumb_ ul li + li {
+    padding-left: 14px;
+    position: relative;
+  }
+
+  div.breadcrumb_ ul li + li:after {
+    content: "-";
+    display: block;
+    position: absolute;
+    left: 5px;
+    top: 0;
+  }
+
+  .breadcrumb_ {
+    padding-bottom: 60px;
+    z-index: 1;
+  }
+
+  .breadcrumb_,
+  .container_ {
+    background-color: #fff;
+    position: relative;
+  }
+
+  .brand-intro {
+    background: #fff;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 70px;
+    text-align: left;
+    min-height: 154px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .brand-intro * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .brand-intro__wrap {
+    width: 1200px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  .brand-intro__content,
+  .brand-intro__logo {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+  }
+
+  .brand-intro__content {
+    width: 900px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+
+  .brand-intro__ttl {
+    font-size: 11px;
+    font-weight: 700;
+    width: 100px;
+  }
+
+  .brand-intro__ttl:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+
+  .brand-intro__name {
+    display: inline-block;
+    font-family: Poppins, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+  }
+
+  .brand-intro__read {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+
+  .brand-intro__txt {
+    font-size: 12px;
+    line-height: 1.666;
+    letter-spacing: 0.04em;
+    width: calc(100% - 100px);
+  }
+
+  .brand-intro__txt p:not(:last-child) {
+    margin-bottom: 1em;
+  }
+
+  .brand-intro__txt:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+
+  /*ニュースレターモーダル*/
+  #menu_newsletter {
+    display: none;
+  }
+</style>
+<Layout title="Welcome to Astro.">
+  <div id="lookbook_ny">
+    <video
+      class="video-bg"
+      src="../../../public/mov2-pc.mp4"
+      autoplay
+      muted
+      playsinline></video>
+
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"
+    ></script>
+    <section class="fv">
+      <h1 class="fv_title">
+        DUMMY TEXT DUMMY <br /> AT NEW YORK STORE
+      </h1>
+      <div class="fv_container">
+        <div class="fv_container_box">
+          <p class="text">
+            DUMMY TEXT DUMMY DUMMY TEXT DUMMY TEXT DUMMY DUMMY TEXT DUMMY
+          </p>
+          <p class="text">
+            DUMMY TEXT DUMMY DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY DUMMY
+            TEXT DUMMY DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY DUMMY TEXT
+            DUMMY DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY DUMMY TEXT DUMMY
+            DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY DUMMY TEXT DUMMY DUMMY
+            TEXT DUMMY TEXT DUMMY TEXT DUMMY
+          </p>
+          <div class="fv_link">
+            <a class="link-primary link-primary--large" href="#!"
+              >STORE LOCATOR</a
+            >
+          </div>
+        </div>
+      </div>
+      <button class="fv_container_scrolldown">VIEW ALL ITEMS</button>
+    </section>
+    <section class="app">
+      <h2 class="app_title">DOWNLOAD OUR APP</h2>
+      <p class="app_text">
+        DUMMY TEXT DUMMY DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY DUMMY TEXT
+        DUMMY DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY DUMMY TEXT DUMMY TEXT
+        DUMMY DUMMY DUMMY TEXT
+      </p>
+      <div class="app_box">
+        <a href="#!" class="link-primary">for iOS</a>
+        <a href="#!" class="link-primary">for Android</a>
+      </div>
+    </section>
+
+    <!-- men -->
+    <div class="handle-scroll">
+      <section class="l-lookbook">
+        <div class="js-text-box">
+          <div>
+            <div class="l-lookbook_container-text">
+              <h2 class="l-lookbook_title">
+                <img
+                  src="../../../public/NY_lookbook/logo_men_white.png"
+                  alt=""
+                  width="490"
+                  height="252"
+                />
+              </h2>
+              <div class="l-lookbook_container">
+                <dl class="l-lookbook_list">
+                  <div class="l-lookbook_block">
+                    <dt class="l-lookbook_term">BRAND NAME</dt>
+                    <dl class="l-lookbook_desc">Yohji Yamamoto POUR HOMME</dl>
+                  </div>
+                  <div class="l-lookbook_block">
+                    <dt class="l-lookbook_term">DESCRIPTION</dt>
+                    <dl class="l-lookbook_desc">
+                      Yohji Yamamoto POUR HOMME is Yamamoto's premier menswear
+                      brand, which has embodied the designer's uncompromised
+                      design philosophy since its debut in 1984. Yamamoto's
+                      ideal men are those who are difficult to categorize
+                      readily, and who have a free spirit unbound by social
+                      norms. These guys are dandy, but have some comical
+                      uniqueness to them.
+                    </dl>
+                  </div>
+                </dl>
+                <div class="l-lookbook_link">
+                  <a href="#!" class="link-primary ink-primary--large"
+                    >VIEW COLLECTIONS</a
+                  >
+                </div>
+              </div>
+              <img
+                src="../../../public/NY_lookbook/logo_men_bg.png"
+                alt=""
+                width="1229"
+                height="663"
+                class="bg-logo"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="js-image-box">
+          <div class="l-lookbook_container-image">
+            <img
+              src="../../../public/NY_lookbook/lookbook_men01.jpg"
+              alt=""
+              width="1500"
+              height="2160"
+              alt="Yohji Yamamoto POUR HOMME look01"
+              class="handle-fadein"
+            />
+            <img
+              src="../../../public/NY_lookbook/lookbook_men02.jpg"
+              alt=""
+              width="1500"
+              height="2160"
+              alt="Yohji Yamamoto POUR HOMME look02"
+              class="handle-fadein"
+            />
+            <img
+              src="../../../public/NY_lookbook/lookbook_men03.jpg"
+              alt=""
+              width="1500"
+              height="2160"
+              alt="Yohji Yamamoto POUR HOMME look03"
+              class="handle-fadein"
+            />
+            <img
+              src="../../../public/NY_lookbook/lookbook_men04.jpg"
+              alt=""
+              width="1500"
+              height="2160"
+              alt="Yohji Yamamoto POUR HOMME look04"
+              class="handle-fadein"
+            />
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- women -->
+    <div class="handle-scroll">
+      <section class="l-lookbook">
+        <div class="js-text-box">
+          <div class="handle-fadein">
+            <div class="l-lookbook_container-text">
+              <h2 class="l-lookbook_title">
+                <img
+                  src="../../../public/NY_lookbook/logo_women_white.png"
+                  alt=""
+                  width="490"
+                  height="252"
+                />
+              </h2>
+              <div class="l-lookbook_container">
+                <dl class="l-lookbook_list">
+                  <div class="l-lookbook_block">
+                    <dt class="l-lookbook_term">BRAND NAME</dt>
+                    <dl class="l-lookbook_desc">Yohji Yamamoto</dl>
+                  </div>
+                  <div class="l-lookbook_block">
+                    <dt class="l-lookbook_term">DESCRIPTION</dt>
+                    <dl class="l-lookbook_desc">
+                      Since his debut runway show in Paris in 1981, Yohji
+                      Yamamoto has been revolutionizing the fashion world
+                      through his philosophy of "conquering fashion through
+                      antithesis" - namely, an antithesis to traditional western
+                      clothing. Armed with a spirit of rebellion, he expresses
+                      his design philosophy though creating pieces that have
+                      endured the test of time, and which challenge taboos and
+                      propose radical convictions.
+                    </dl>
+                  </div>
+                </dl>
+                <div class="l-lookbook_link">
+                  <a href="#!" class="link-primary ink-primary--large"
+                    >VIEW COLLECTIONS</a
+                  >
+                </div>
+              </div>
+              <img
+                src="../../../public/NY_lookbook/logo_women_bg.png"
+                alt=""
+                width="1229"
+                height="455"
+                class="bg-logo"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="js-image-box">
+          <div class="l-lookbook_container-image">
+            <img
+              src="../../../public/NY_lookbook/lookbook_women01.jpg"
+              alt=""
+              width="1500"
+              height="2160"
+              alt="Yohji Yamamoto look01"
+              class="handle-fadein"
+            />
+            <img
+              src="../../../public/NY_lookbook/lookbook_women02.jpg"
+              alt=""
+              width="1500"
+              height="2160"
+              alt="Yohji Yamamoto look02"
+              class="handle-fadein"
+            />
+            <img
+              src="../../../public/NY_lookbook/lookbook_women03.jpg"
+              alt=""
+              width="1500"
+              height="2160"
+              alt="Yohji Yamamoto look03"
+              class="handle-fadein"
+            />
+            <img
+              src="../../../public/NY_lookbook/lookbook_women04.jpg"
+              alt=""
+              width="1500"
+              height="2160"
+              alt="Yohji Yamamoto look04"
+              class="handle-fadein"
+            />
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="sns-x">
+      <a
+        class="twitter-timeline"
+        data-width="400"
+        data-height="400"
+        href="https://twitter.com/officialyohji?ref_src=twsrc%5Etfw"
+        >Tweets by officialyohji</a
+      >
+      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // const TARGET = new Date("2023-08-31T23:59:59-04:00");
+  // console.log("TARGET", TARGET);
+
+  // let NOW = new Date();
+  // const OFFSET_GMT = NOW.getTimezoneOffset() * 60 * 1000; // to milliseconds
+  // const OFFSET_NY = -4 * 60 * 60 * 1000; // NY is UTC/GMT -4 during daylight saving time
+  // NOW.setTime(NOW.getTime() + OFFSET_GMT + OFFSET_NY);
+  // console.log("TARGET", NOW);
+
+  // let NOW = new Date();
+  // const OFFSET_GMT = NOW.getTimezoneOffset() * 60 * 1000; // to milliseconds
+  // const OFFSET_NY = -4 * 60 * 60 * 1000; // NY is UTC/GMT -4 during daylight saving time
+  // NOW.setTime(NOW.getTime() + OFFSET_GMT + OFFSET_NY);
+
+  // const TARGET = new Date("2023-08-31T23:59:59-04:00");
+  // let remainTime = TARGET - NOW; // Use NOW instead of NOW_IN_NY
+
+  // ===============================================
+  // #
+  // ===============================================
+
+  // var now = new Date(),
+  //   localTime = now.getTime(),
+  //   localOffset = now.getTimezoneOffset() * 60 * 1000,
+  //   utcTime = localTime + localOffset,
+  //   utc = new Date(utcTime);
+  // console.log("ローカル時刻" + localTime);
+  // console.log("ローカルとの差：" + localOffset);
+  // console.log("世界時（UTC）（ミリ秒単位）：" + utcTime);
+  // console.log("世界時 (UTC) ：" + utc);
+  // var tz = 4, // NYの標準時との時差
+  //   ny = new Date(utcTime - tz * 60 * 60 * 1000);
+  // console.log("ニューヨーク ：" + ny);
+
+  // const TARGET = new Date("2023-09-01T00:00");
+  // console.log("TARGET ：" + TARGET);
+
+  // var utcDate = new Date(Date.UTC(2023, 9, 1, 3, 59, 0));
+  // utcDate.setUTCHours(utcDate.getUTCHours() - 4);
+  // console.log("utcDate", utcDate.toUTCString());
+  // console.log(new Date("2023-09-01T00:00"));
+
+  const timezonOffsetNewYork = -4;
+  const currentNewYorkTime = new Date(
+    Date.now() +
+      (new Date().getTimezoneOffset() + timezonOffsetNewYork * 60) * 60 * 1000
+  );
+  console.log(currentNewYorkTime);
+
+  const NOW = new Date();
+  const TIME_DIFF = 4; // NYの標準時との時差
+
+  let localTime = NOW.getTime();
+  let localOffset = NOW.getTimezoneOffset() * 60 * 1000;
+  let utcTime = localTime + localOffset; // 協定世界時のリアルタイム
+  let nyTime = new Date(utcTime - TIME_DIFF * 60 * 60 * 1000); // NYのリアルタイム
+  console.log(nyTime);
+
+  // import "../../scripts/others/countdown-after";
+</script>
