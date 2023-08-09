@@ -21,7 +21,8 @@ body {
   line-height: 1.6;
 }
 .handle-fadein {
-  // opacity: 0;
+  transform: translateY(10px);
+  opacity: 0;
 }
 // ===============================================
 // # link
@@ -206,7 +207,7 @@ body {
   // ===============================================
   .l-lookbook {
     padding: 6rem 0 0;
-    position: relative;
+    // position: relative;
     width: 92%;
     margin: 0 auto;
     .bg-logo {
@@ -222,8 +223,35 @@ body {
       display: grid;
       grid-template: max-content / 1fr 1fr;
       align-items: center;
+      width: initial;
+      padding-left: calc((120 / 1280) * 100vw);
+      padding-right: calc((120 / 1280) * 100vw);
+      padding-top: 0;
       .bg-logo {
         width: calc((524 / 1280) * 100%);
+      }
+    }
+    // ===============================================
+    // # handle-scroll
+    // ===============================================
+    .l-lookbook_dummy {
+      display: none;
+    }
+    @media only screen and (min-width: 959px) {
+      .js-text-box {
+        // opacity: 0;
+        position: fixed;
+        top: 50%;
+        // left: 8%;
+        translate: 0 -50%;
+      }
+      .l-lookbook_dummy {
+        display: block;
+        aspect-ratio: 1/1;
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        // background-color: rebeccapurple;
       }
     }
     //.l-lookbook_container-text

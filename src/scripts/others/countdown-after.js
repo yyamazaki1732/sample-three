@@ -7,33 +7,42 @@ gsap.registerPlugin(ScrollTrigger);
 // ===============================================
 (() => {
   const DURARION = 1;
+
   const handleFadeIn = () => {
     const HANDLE_FADEIN = document.querySelectorAll(".handle-fadein");
-
+    console.log(HANDLE_FADEIN);
     HANDLE_FADEIN.forEach((element) => {
+      const FadeIn = () => {
+        gsap.to(element, {
+          translateY: 0,
+          opacity: 1,
+          duration: DURARION,
+          ease: "Power2.out",
+          overwrite: true,
+        });
+      };
+      const FadeOut = () => {
+        gsap.to(element, {
+          translateY: "10px",
+          opacity: 0,
+          overwrite: true,
+        });
+      };
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: element,
-          start: "top 50%",
+          start: "top 60%",
           ease: "Power4.easeOut",
+
+          onEnter: () => {
+            FadeIn();
+          },
+          onLeaveBack: () => {
+            FadeOut();
+          },
         },
       });
-      tl.set(element, { opacity: 0 });
-      tl.fromTo(
-        element,
-        {
-          y: 50,
-          scale: 1,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          scale: 1,
-          opacity: 1,
-          duration: DURARION,
-          ease: "Power4.out",
-        }
-      );
     });
   };
   // ===============================================
@@ -41,66 +50,80 @@ gsap.registerPlugin(ScrollTrigger);
   // ===============================================
   const handleScroll = () => {
     const CONTAINER = document.querySelectorAll(".handle-scroll");
-    // const TEXT_BOX = document.querySelectorAll(".js-text-box");
-    // const IMAGE_BOX = document.querySelector(".js-image-box");
-    // const HEIGHT = IMAGE_BOX.getBoundingClientRect().height;
-    // console.log(CONTAINER[0].children[0].children[0]);
-    CONTAINER.forEach((element) => {
-      console.log("element", element.children[0].children[0]);
 
-      const TEXT_BOX = element.children[0].children[0];
-      const IMAGE_BOX = element.children[0].children[1];
+    CONTAINER.forEach((element) => {
+      const TEXT_BOX = element.children[0].children[1];
+      const IMAGE_BOX = element.children[0].children[2];
+      const BG = element.children[0].children[3];
+
       const HEIGHT = IMAGE_BOX.getBoundingClientRect().height;
+      gsap.set(IMAGE_BOX, { translateY: `${HEIGHT}px` });
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: element,
           start: "center center",
-          end: "+=500%",
-          scrub: true,
+          end: "+=400%",
+          scrub: 0.1,
           pin: true,
+          markers: true,
         },
       });
-
-      gsap.set(TEXT_BOX, { opacity: 0 });
-
       tl.fromTo(
         IMAGE_BOX,
         {
           translateY: `${HEIGHT}px`,
         },
         {
-          translateY: `-${HEIGHT + 10}px`,
+          translateY: `-${HEIGHT + 40}px`,
         }
       );
+      window.addEventListener("scroll", () => {
+        const START_LINE = window.innerHeight * (3 / 4);
+        const END_LINE = window.innerHeight * (1 / 5);
 
-      // gsap.fromTo(
-      //   TEXT_BOX,
-      //   {
-      //     opacity: 1,
-      //   },
-      //   {
-      //     opacity: 0,
-      //     duration: DURARION,
-      //     scrollTrigger: {
-      //       trigger: IMAGE_BOX,
-      //       start: "bottom top",
-      //     },
-      //   }
-      // );
-      // .to(
-      //   TEXT_BOX,
-      //   {
-      //     opacity: 0,
-      //     duration: DURARION,
-      //   },
-      //   "-=1"
-      // );
+        const fadeInFix = () => {
+          gsap.to(TEXT_BOX, {
+            opacity: 1,
+            duration: 0.5,
+            overwrite: true,
+          });
+          gsap.to(BG, {
+            opacity: 1,
+            duration: 0.5,
+            overwrite: true,
+          });
+        };
+        const fadeOutFix = () => {
+          gsap.to(TEXT_BOX, {
+            opacity: 0,
+            duration: 0.5,
+            overwrite: true,
+          });
+          gsap.to(BG, {
+            opacity: 0,
+            duration: 0.5,
+            overwrite: true,
+          });
+        };
+
+        IMAGE_BOX.getBoundingClientRect().top <= START_LINE
+          ? fadeInFix()
+          : IMAGE_BOX.getBoundingClientRect().top > START_LINE
+          ? fadeOutFix()
+          : null;
+
+        IMAGE_BOX.getBoundingClientRect().bottom <= END_LINE
+          ? fadeOutFix()
+          : IMAGE_BOX.getBoundingClientRect().bottom <= END_LINE
+          ? fadeInFix()
+          : null;
+      });
     });
   };
 
   const setAnimation = () => {
-    handleFadeIn();
     handleScroll();
+    handleFadeIn();
   };
 
   window.addEventListener("DOMContentLoaded", setAnimation);

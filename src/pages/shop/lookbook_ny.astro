@@ -1279,13 +1279,13 @@ import "../../styles/lookbook_ny.scss";
     <!-- men -->
     <div class="handle-scroll">
       <section class="l-lookbook">
+        <div class="l-lookbook_dummy"></div>
         <div class="js-text-box">
-          <div>
+          <div class="handle-fadein-fixed">
             <div class="l-lookbook_container-text">
               <h2 class="l-lookbook_title">
                 <img
                   src="../../../public/NY_lookbook/logo_men_white.png"
-                  alt=""
                   width="490"
                   height="252"
                 />
@@ -1315,13 +1315,6 @@ import "../../styles/lookbook_ny.scss";
                   >
                 </div>
               </div>
-              <img
-                src="../../../public/NY_lookbook/logo_men_bg.png"
-                alt=""
-                width="1229"
-                height="663"
-                class="bg-logo"
-              />
             </div>
           </div>
         </div>
@@ -1330,7 +1323,6 @@ import "../../styles/lookbook_ny.scss";
           <div class="l-lookbook_container-image">
             <img
               src="../../../public/NY_lookbook/lookbook_men01.jpg"
-              alt=""
               width="1500"
               height="2160"
               alt="Yohji Yamamoto POUR HOMME look01"
@@ -1338,7 +1330,6 @@ import "../../styles/lookbook_ny.scss";
             />
             <img
               src="../../../public/NY_lookbook/lookbook_men02.jpg"
-              alt=""
               width="1500"
               height="2160"
               alt="Yohji Yamamoto POUR HOMME look02"
@@ -1346,7 +1337,6 @@ import "../../styles/lookbook_ny.scss";
             />
             <img
               src="../../../public/NY_lookbook/lookbook_men03.jpg"
-              alt=""
               width="1500"
               height="2160"
               alt="Yohji Yamamoto POUR HOMME look03"
@@ -1354,7 +1344,6 @@ import "../../styles/lookbook_ny.scss";
             />
             <img
               src="../../../public/NY_lookbook/lookbook_men04.jpg"
-              alt=""
               width="1500"
               height="2160"
               alt="Yohji Yamamoto POUR HOMME look04"
@@ -1362,19 +1351,26 @@ import "../../styles/lookbook_ny.scss";
             />
           </div>
         </div>
+        <img
+          src="../../../public/NY_lookbook/logo_men_bg.png"
+          alt=""
+          width="1229"
+          height="663"
+          class="bg-logo"
+        />
       </section>
     </div>
 
     <!-- women -->
     <div class="handle-scroll">
       <section class="l-lookbook">
+        <div class="l-lookbook_dummy"></div>
         <div class="js-text-box">
-          <div class="handle-fadein">
+          <div class="handle-fadein-fixed">
             <div class="l-lookbook_container-text">
               <h2 class="l-lookbook_title">
                 <img
                   src="../../../public/NY_lookbook/logo_women_white.png"
-                  alt=""
                   width="490"
                   height="252"
                 />
@@ -1405,13 +1401,6 @@ import "../../styles/lookbook_ny.scss";
                   >
                 </div>
               </div>
-              <img
-                src="../../../public/NY_lookbook/logo_women_bg.png"
-                alt=""
-                width="1229"
-                height="455"
-                class="bg-logo"
-              />
             </div>
           </div>
         </div>
@@ -1419,7 +1408,6 @@ import "../../styles/lookbook_ny.scss";
           <div class="l-lookbook_container-image">
             <img
               src="../../../public/NY_lookbook/lookbook_women01.jpg"
-              alt=""
               width="1500"
               height="2160"
               alt="Yohji Yamamoto look01"
@@ -1427,7 +1415,6 @@ import "../../styles/lookbook_ny.scss";
             />
             <img
               src="../../../public/NY_lookbook/lookbook_women02.jpg"
-              alt=""
               width="1500"
               height="2160"
               alt="Yohji Yamamoto look02"
@@ -1435,7 +1422,6 @@ import "../../styles/lookbook_ny.scss";
             />
             <img
               src="../../../public/NY_lookbook/lookbook_women03.jpg"
-              alt=""
               width="1500"
               height="2160"
               alt="Yohji Yamamoto look03"
@@ -1443,7 +1429,6 @@ import "../../styles/lookbook_ny.scss";
             />
             <img
               src="../../../public/NY_lookbook/lookbook_women04.jpg"
-              alt=""
               width="1500"
               height="2160"
               alt="Yohji Yamamoto look04"
@@ -1451,6 +1436,12 @@ import "../../styles/lookbook_ny.scss";
             />
           </div>
         </div>
+        <img
+          src="../../../public/NY_lookbook/logo_women_bg.png"
+          width="1229"
+          height="455"
+          class="bg-logo"
+        />
       </section>
     </div>
     <div class="sns-x">
@@ -1471,6 +1462,20 @@ import "../../styles/lookbook_ny.scss";
 </Layout>
 
 <script>
+  const TARGET = document.getElementsByClassName("js-text-box");
+  const WIDTH = document
+    .getElementsByClassName("l-lookbook_dummy")[0]
+    .getBoundingClientRect().width;
+
+  const adjustWidth = () => {
+    if (WIDTH != null) {
+      for (let i = 0; i < TARGET.length; i++) {
+        TARGET[i].style.width = `${WIDTH}px`;
+      }
+    }
+  };
+  window.addEventListener("DOMContentLoaded", adjustWidth);
+  window.addEventListener("resize", adjustWidth);
   // const TARGET = new Date("2023-08-31T23:59:59-04:00");
   // console.log("TARGET", TARGET);
 
@@ -1529,5 +1534,5 @@ import "../../styles/lookbook_ny.scss";
   let nyTime = new Date(utcTime - TIME_DIFF * 60 * 60 * 1000); // NYのリアルタイム
   console.log(nyTime);
 
-  // import "../../scripts/others/countdown-after";
+  import "../../scripts/others/countdown-after";
 </script>
