@@ -1229,63 +1229,64 @@ import "../../styles/lookbook_ny.scss";
 </style>
 <Layout title="Welcome to Astro.">
   <div id="lookbook_ny">
-    <video
-      class="video-bg"
-      src="../../../public/mov2-pc.mp4"
-      autoplay
-      muted
-      playsinline></video>
+    <video class="video-bg" src="/mov2-pc.mp4" autoplay muted playsinline
+    ></video>
 
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"
     ></script>
     <section class="fv">
-      <h1 class="fv_title">
-        DUMMY TEXT DUMMY <br /> AT NEW YORK STORE
-      </h1>
-      <div class="fv_container">
-        <div class="fv_container_box">
-          <p class="text">
-            DUMMY TEXT DUMMY DUMMY TEXT DUMMY TEXT DUMMY DUMMY TEXT DUMMY
-          </p>
-          <p class="text">
-            DUMMY TEXT DUMMY DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY DUMMY
-            TEXT DUMMY DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY DUMMY TEXT
-            DUMMY DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY DUMMY TEXT DUMMY
-            DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY DUMMY TEXT DUMMY DUMMY
-            TEXT DUMMY TEXT DUMMY TEXT DUMMY
-          </p>
-          <div class="fv_link">
-            <a class="link-primary link-primary--large" href="#!"
-              >STORE LOCATOR</a
-            >
+      <div class="fv_layout">
+        <h1 class="fv_title">
+          DUMMY TEXT DUMMY <br /> AT NEW YORK STORE
+        </h1>
+        <div class="fv_container">
+          <div class="fv_container_box">
+            <p class="text">
+              DUMMY TEXT DUMMY DUMMY TEXT DUMMY TEXT DUMMY DUMMY TEXT DUMMY
+            </p>
+            <p class="text">
+              DUMMY TEXT DUMMY DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY
+              DUMMY TEXT DUMMY DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY
+              DUMMY TEXT DUMMY DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY
+              DUMMY TEXT DUMMY DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY
+              DUMMY TEXT DUMMY DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY
+            </p>
+            <div class="fv_link">
+              <a class="link-primary link-primary--large" href="#!"
+                >STORE LOCATOR</a
+              >
+            </div>
           </div>
         </div>
       </div>
       <button class="fv_container_scrolldown">VIEW ALL ITEMS</button>
     </section>
     <section class="app">
-      <h2 class="app_title">DOWNLOAD OUR APP</h2>
-      <p class="app_text">
-        DUMMY TEXT DUMMY DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY DUMMY TEXT
-        DUMMY DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY DUMMY TEXT DUMMY TEXT
-        DUMMY DUMMY DUMMY TEXT
-      </p>
-      <div class="app_box">
-        <a href="#!" class="link-primary">for iOS</a>
-        <a href="#!" class="link-primary">for Android</a>
+      <div class="app_inner">
+        <h2 class="app_title">DOWNLOAD OUR APP</h2>
+        <div class="app_content">
+          <p class="app_text">
+            By turning on Bluetooth, you can access special content on your
+            smartphone.
+          </p>
+          <div class="app_box">
+            <a href="#!" class="link-primary">FOR iOS</a>
+            <a href="#!" class="link-primary">FOR Android</a>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- men -->
-    <div class="handle-scroll">
+    <div class="handle-bg">
       <section class="l-lookbook">
-        <div class="l-lookbook_dummy"></div>
+        <!-- <div class="l-lookbook_dummy"></div> -->
         <div class="js-text-box">
           <div class="handle-fadein-fixed">
             <div class="l-lookbook_container-text">
               <h2 class="l-lookbook_title">
                 <img
-                  src="../../../public/NY_lookbook/logo_men_white.png"
+                  src="/NY_lookbook/logo_men_white.png"
                   width="490"
                   height="252"
                 />
@@ -1318,32 +1319,31 @@ import "../../styles/lookbook_ny.scss";
             </div>
           </div>
         </div>
-
         <div class="js-image-box">
           <div class="l-lookbook_container-image">
             <img
-              src="../../../public/NY_lookbook/lookbook_men01.jpg"
+              src="/NY_lookbook/lookbook_men01.jpg"
               width="1500"
               height="2160"
               alt="Yohji Yamamoto POUR HOMME look01"
               class="handle-fadein"
             />
             <img
-              src="../../../public/NY_lookbook/lookbook_men02.jpg"
+              src="/NY_lookbook/lookbook_men02.jpg"
               width="1500"
               height="2160"
               alt="Yohji Yamamoto POUR HOMME look02"
-              class="handle-fadein"
+              class="handle-fadein start-delay"
             />
             <img
-              src="../../../public/NY_lookbook/lookbook_men03.jpg"
+              src="/NY_lookbook/lookbook_men03.jpg"
               width="1500"
               height="2160"
               alt="Yohji Yamamoto POUR HOMME look03"
               class="handle-fadein"
             />
             <img
-              src="../../../public/NY_lookbook/lookbook_men04.jpg"
+              src="/NY_lookbook/lookbook_men04.jpg"
               width="1500"
               height="2160"
               alt="Yohji Yamamoto POUR HOMME look04"
@@ -1351,26 +1351,26 @@ import "../../styles/lookbook_ny.scss";
             />
           </div>
         </div>
-        <img
-          src="../../../public/NY_lookbook/logo_men_bg.png"
+        <!-- <img
+          src="/NY_lookbook/logo_men_bg.png"
           alt=""
           width="1229"
           height="663"
           class="bg-logo"
-        />
+        /> -->
       </section>
     </div>
 
     <!-- women -->
-    <div class="handle-scroll">
+    <div class="handle-bg">
       <section class="l-lookbook">
-        <div class="l-lookbook_dummy"></div>
+        <!-- <div class="l-lookbook_dummy"></div> -->
         <div class="js-text-box">
           <div class="handle-fadein-fixed">
             <div class="l-lookbook_container-text">
               <h2 class="l-lookbook_title">
                 <img
-                  src="../../../public/NY_lookbook/logo_women_white.png"
+                  src="/NY_lookbook/logo_women_white.png"
                   width="490"
                   height="252"
                 />
@@ -1407,28 +1407,28 @@ import "../../styles/lookbook_ny.scss";
         <div class="js-image-box">
           <div class="l-lookbook_container-image">
             <img
-              src="../../../public/NY_lookbook/lookbook_women01.jpg"
+              src="/NY_lookbook/lookbook_women01.jpg"
               width="1500"
               height="2160"
               alt="Yohji Yamamoto look01"
               class="handle-fadein"
             />
             <img
-              src="../../../public/NY_lookbook/lookbook_women02.jpg"
+              src="/NY_lookbook/lookbook_women02.jpg"
               width="1500"
               height="2160"
               alt="Yohji Yamamoto look02"
-              class="handle-fadein"
+              class="handle-fadein start-delay"
             />
             <img
-              src="../../../public/NY_lookbook/lookbook_women03.jpg"
+              src="/NY_lookbook/lookbook_women03.jpg"
               width="1500"
               height="2160"
               alt="Yohji Yamamoto look03"
               class="handle-fadein"
             />
             <img
-              src="../../../public/NY_lookbook/lookbook_women04.jpg"
+              src="/NY_lookbook/lookbook_women04.jpg"
               width="1500"
               height="2160"
               alt="Yohji Yamamoto look04"
@@ -1436,46 +1436,183 @@ import "../../styles/lookbook_ny.scss";
             />
           </div>
         </div>
-        <img
-          src="../../../public/NY_lookbook/logo_women_bg.png"
-          width="1229"
-          height="455"
-          class="bg-logo"
-        />
       </section>
     </div>
-    <div class="sns-x">
-      <a
-        class="twitter-timeline"
-        data-width="400"
-        data-height="400"
-        href="https://twitter.com/officialyohji?ref_src=twsrc%5Etfw"
-        >Tweets by officialyohji</a
-      >
-      <script
-        async
-        src="https://platform.twitter.com/widgets.js"
-        charset="utf-8"
-      ></script>
+
+    <!-- bg -->
+    <div class="js-bg">
+      <img
+        src="/NY_lookbook/logo_men_bg.png"
+        alt="Yohji Yamamoto POUR HOMME"
+        width="1229"
+        height="663"
+        loading="lazy"
+      />
+      <img
+        src="/NY_lookbook/logo_women_bg.png"
+        width="1229"
+        height="455"
+        alt="Yohji Yamamoto"
+        loading="lazy"
+      />
+    </div>
+    <!-- notes -->
+    <section class="notes">
+      <dl class="notes_list">
+        <div class="nodes_item">
+          <dt class="notes_term">notes</dt>
+          <dd class="notes_desc">
+            <p>
+              Our online store offers prices excluding customs duties and taxes,
+              resulting in a price difference between the online and in-store
+              purchases.Kindly be aware that purchasing an item online may incur
+              customs duty and consumption tax charges upon delivery to your
+              place of residence.
+            </p>
+
+            <p>
+              Please be advised that there may be a time discrepancy between the
+              products listed on the webpage and the actual product inventory
+              available in-store.The in-store inventory may differ from that
+              displayed on the website.
+            </p>
+          </dd>
+        </div>
+        <div class="nodes_item">
+          <dt class="notes_term">STORE INFORMATION</dt>
+          <dd class="notes_desc">
+            <a
+              class="twitter-timeline"
+              data-width="400"
+              data-height="400"
+              href="https://twitter.com/officialyohji?ref_src=twsrc%5Etfw"
+              >Tweets by officialyohji</a
+            >
+            <script
+              async
+              src="https://platform.twitter.com/widgets.js"
+              charset="utf-8"
+            ></script>
+          </dd>
+        </div>
+        <div class="nodes_item">
+          <dt class="notes_term">INSTAGRAM GALLERY</dt>
+          <dd class="notes_desc">
+            <div class="dummy"></div>
+          </dd>
+        </div>
+      </dl>
+    </section>
+    <div class="sns-x"></div>
+
+    <!-- modal -->
+    <div class="modal">
+      <section class="modal_inner store-locator">
+        <div class="modal_container">
+          <button class="modal_buttom"></button>
+          <div class="modal_text-box">
+            <h2 class="modal_title">STORE LOCATOR</h2>
+            <div class="modal_box">
+              <h3 class="modal_heading">DUMMY TEXT</h3>
+              <p class="modal_text">
+                DUMMY TEXT DUMMY DUMMY DUMMY TEXT DUMMY DUMMY DUMMY TEXT DUMMY
+                DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY DUMMY TEXT DUMMY
+                DUMMY TEXT DUMMY TEXTDUMMY TEXT DUMMY DUMMY DUMMY TEXT
+              </p>
+            </div>
+            <div class="modal_box">
+              <h3 class="modal_heading">DUMMY TEXT</h3>
+              <div>
+                <p class="modal_text">
+                  DUMMY TEXT DUMMY DUMMY DUMMY TEXT DUMMY DUMMY DUMMY TEXT DUMMY
+                  DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY DUMMY TEXT DUMMY
+                  DUMMY TEXT DUMMY TEXTDUMMY TEXT DUMMY DUMMY DUMMY TEXT
+                </p>
+                <div class="modal_link">
+                  <a href="#!" class="link-primary">Google Map</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal_container">
+          <div class="modal_text-box">
+            <h2 class="modal_title">STORE LOCATOR</h2>
+
+            <div class="modal_box">
+              <h3>
+                <img
+                  src="/NY_lookbook/modal_logo.png"
+                  alt=""
+                  width="220"
+                  height="70"
+                  class="modal_logo"
+                />
+              </h3>
+              <div>
+                <p class="modal_text">
+                  Designed by Yohji Yamamoto’s atelier team, S’YTE (pronounced
+                  “site”) is available online only at THE SHOP YOHJI YAMAMOTO.
+                  Its name comes from the backwards reading of “et Y’s,” which
+                  means “with Y’s” in French. Armed with a spirit of
+                  anti-fashion, S’YTE offers genderless collections that focus
+                  on two key concepts of Yamamoto: cut and silhouette. DUMMY
+                  TEXT DUMMY DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY DUMMY
+                  TEXT DUMMY DUMMY TEXT DUMMY TEXT DUMMY TEXT DUMMY DUMMY DUMMY
+                  TEXT DUMMY TEXT DUMMY DUMMY DUMMY TEXT
+                </p>
+                <div class="modal_link">
+                  <a href="#!" class="link-primary">BRAND PAGE</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <picture>
+            <source
+              media="(max-width: 919px)"
+              srcset="/NY_lookbook/modal_bg_sp.jpg"
+              data-width="750"
+              data-height="900"
+            />
+            <img class="modal_bg" src="/NY_lookbook/modal_bg_pc.jpg" alt="" />
+          </picture>
+        </div>
+      </section>
     </div>
   </div>
 </Layout>
 
 <script>
-  const TARGET = document.getElementsByClassName("js-text-box");
-  const WIDTH = document
-    .getElementsByClassName("l-lookbook_dummy")[0]
-    .getBoundingClientRect().width;
+  const MODAL = document.getElementsByClassName("modal")[0];
+  const OPEN_BUTTON = document.getElementsByClassName("fv_link")[0].children[0];
+  const CLOSE_BUTTON = document.getElementsByClassName("modal_buttom")[0];
 
-  const adjustWidth = () => {
-    if (WIDTH != null) {
-      for (let i = 0; i < TARGET.length; i++) {
-        TARGET[i].style.width = `${WIDTH}px`;
-      }
-    }
+  const openModal = () => {
+    MODAL.classList.add("is-shown");
   };
-  window.addEventListener("DOMContentLoaded", adjustWidth);
-  window.addEventListener("resize", adjustWidth);
+
+  const closeModal = () => {
+    MODAL.classList.remove("is-shown");
+  };
+
+  OPEN_BUTTON.addEventListener("click", openModal);
+  CLOSE_BUTTON.addEventListener("click", closeModal);
+
+  // const TARGET = document.getElementsByClassName("js-text-box");
+  // const WIDTH = document
+  //   .getElementsByClassName("l-lookbook_dummy")[0]
+  //   .getBoundingClientRect().width;
+
+  // const adjustWidth = () => {
+  //   if (WIDTH != null) {
+  //     for (let i = 0; i < TARGET.length; i++) {
+  //       TARGET[i].style.width = `${WIDTH}px`;
+  //     }
+  //   }
+  // };
+  // window.addEventListener("DOMContentLoaded", adjustWidth);
+  // window.addEventListener("resize", adjustWidth);
   // const TARGET = new Date("2023-08-31T23:59:59-04:00");
   // console.log("TARGET", TARGET);
 
