@@ -6,18 +6,75 @@ gsap.registerPlugin(ScrollTrigger);
   const DURARION = 0.8;
 
   // ===============================================
-  // # fv
+  // # opening
   // ===============================================
+  const handleOpening = () => {
+    // const SHUTTER = document.querySelectorAll(".opening");
+    const VIDEO = document.querySelectorAll(".video-bg");
+    const FV = document.getElementsByClassName("fv_layout")[0];
 
-  const handleFv = () => {
-    const fv = document.querySelectorAll(".fv_title");
-    ScrollTrigger.create({
-      trigger: fv,
-      start: "center center",
-      end: "100%",
-      scrub: 0,
-      pin: true,
+    const SHUTTER = document.getElementsByClassName("opening")[0];
+    const WRAPPER = document.getElementsByClassName("fv-wrapper")[0];
+    const TEXT = document.getElementsByClassName("fv_container")[0];
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: WRAPPER,
+        start: "top top",
+        end: "140%",
+        scrub: 0,
+        pin: true,
+        invalidateOnRefresh: true,
+      },
     });
+
+    tl.fromTo(
+      TEXT,
+      {
+        translateY: "140%",
+      },
+      {
+        translateY: 0,
+        duration: 1,
+      },
+      "<"
+    );
+
+    tl.scrollTrigger.refresh();
+
+    gsap
+      .timeline()
+      .to(SHUTTER, {
+        translateY: "-120%",
+        duration: 0.4,
+        ease: "Power4.easeIn",
+        delay: 0.6,
+      })
+      .fromTo(
+        VIDEO,
+        {
+          translateY: "5%",
+          scale: 1.05,
+        },
+        {
+          translateY: 0,
+          scale: 1,
+          duration: 1.0,
+        },
+        "-=.2"
+      )
+      .fromTo(
+        FV,
+        {
+          translateY: "5%",
+          opacity: 0,
+        },
+        {
+          translateY: 0,
+          opacity: 1,
+          duration: DURARION,
+        },
+        "<"
+      );
   };
   // ===============================================
   // # handleScroll
@@ -87,6 +144,7 @@ gsap.registerPlugin(ScrollTrigger);
           start: `top ${START_POS}`,
           ease: "Power4.ease",
           invalidateOnRefresh: true,
+          markers: true,
           onEnter: () => {
             FadeIn();
           },
@@ -132,7 +190,7 @@ gsap.registerPlugin(ScrollTrigger);
   };
 
   const setAnimation = () => {
-    // handleFv();
+    handleOpening();
     handleScroll();
     handleBg();
     handleFadeIn();
