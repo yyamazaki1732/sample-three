@@ -1,45 +1,52 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 gsap.registerPlugin(ScrollTrigger);
-
+gsap.registerPlugin(ScrollToPlugin);
 (() => {
   const DURARION = 0.8;
+  const VIDEO = document.getElementsByClassName("video-bg")[0];
+  const FV = document.getElementsByClassName("fv")[0];
+  const TITLE = document.getElementsByClassName("fv_title")[0];
+  const SHUTTER = document.getElementsByClassName("opening")[0];
+  const WRAPPER = document.getElementsByClassName("fv-wrapper")[0];
+  const TEXT = document.getElementsByClassName("fv_container")[0];
+  const mediaQuery = window.matchMedia("(min-width: 960px)");
 
   // ===============================================
   // # opening
   // ===============================================
   const handleOpening = () => {
-    // const SHUTTER = document.querySelectorAll(".opening");
-    const VIDEO = document.querySelectorAll(".video-bg");
-    const FV = document.getElementsByClassName("fv_layout")[0];
-
-    const SHUTTER = document.getElementsByClassName("opening")[0];
-    const WRAPPER = document.getElementsByClassName("fv-wrapper")[0];
-    const TEXT = document.getElementsByClassName("fv_container")[0];
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: WRAPPER,
+        trigger: FV,
         start: "top top",
-        end: "140%",
+        end: "bottom top",
         scrub: 0,
         pin: true,
+        pinSpacing: true,
         invalidateOnRefresh: true,
+        markers: true,
       },
     });
 
     tl.fromTo(
       TEXT,
       {
+        opacity: 0,
         translateY: "140%",
       },
-      {
-        translateY: 0,
-        duration: 1,
-      },
+      { opacity: 1, translateY: 0, duration: 1 },
       "<"
     );
 
     tl.scrollTrigger.refresh();
+
+    ScrollTrigger.create({
+      trigger: ".app",
+      start: "center top",
+      toggleClass: { targets: VIDEO, className: "is-hidden" },
+    });
 
     gsap
       .timeline()
@@ -98,14 +105,6 @@ gsap.registerPlugin(ScrollTrigger);
       });
 
       tl.scrollTrigger.refresh();
-
-      // ScrollTrigger.create({
-      //   trigger: element,
-      //   start: "center center",
-      //   end: () => `${HEIGHT}px`,
-      //   scrub: 0,
-      //   pin: true,
-      // });
     });
   };
 
@@ -144,7 +143,6 @@ gsap.registerPlugin(ScrollTrigger);
           start: `top ${START_POS}`,
           ease: "Power4.ease",
           invalidateOnRefresh: true,
-          markers: true,
           onEnter: () => {
             FadeIn();
           },
@@ -171,7 +169,6 @@ gsap.registerPlugin(ScrollTrigger);
           trigger: element,
           start: "top center",
           end: "bottom center",
-          // anticipatePin: 1,
           toggleClass: { targets: BG_M, className: "is-show" },
         });
       };
@@ -180,7 +177,6 @@ gsap.registerPlugin(ScrollTrigger);
           trigger: element,
           start: "top center",
           end: "bottom center",
-          // anticipatePin: 1,
           toggleClass: { targets: BG_W, className: "is-show" },
         });
       };
@@ -189,11 +185,29 @@ gsap.registerPlugin(ScrollTrigger);
     });
   };
 
+  const handleClick = () => {
+    const TARGET = document.getElementsByClassName("notes")[0];
+    const handleClickButton = document.getElementsByClassName(
+      "fv_container_scrolldown"
+    )[0];
+    handleClickButton.addEventListener("click", () => {
+      gsap.to(window, {
+        duration: 0,
+        marker: true,
+        scrollTo: {
+          y: () => TARGET.getBoundingClientRect().bottom,
+          offsetY: 0,
+        },
+      });
+    });
+  };
+
   const setAnimation = () => {
     handleOpening();
-    handleScroll();
+    mediaQuery.matches ? handleScroll() : null;
     handleBg();
     handleFadeIn();
+    handleClick();
   };
 
   window.addEventListener("DOMContentLoaded", setAnimation);
